@@ -1,0 +1,213 @@
+<SPT Id="1">
+<TimeSource>2</TimeSource>
+<DIRECTION Id="0">
+<PROTOCOL Id="1">
+<LinkConfirm>1</LinkConfirm>
+<LINE Id="1">
+<Interface>0</Interface>
+<BaudRate>9600</BaudRate>
+<SwitchedRX>0</SwitchedRX>
+<SwitchedTX>0</SwitchedTX>
+<DEVICE Id="10220" Name="toEMS">
+<OBJECT Id="1">
+<P Id="0" Ref="91"></P>
+<P Id="1" Ref="92"></P>
+<P Id="2" Ref="93"></P>
+<P Id="3" Ref="94"></P>
+<P Id="4" Ref="95"></P>
+<P Id="5" Ref="96"></P>
+<P Id="6" Ref="97"></P>
+<P Id="7" Ref="98"></P>
+<P Id="8" Ref="99"></P>
+<P Id="9" Ref="100"></P>
+<P Id="10" Ref="101"></P>
+<P Id="11" Ref="102"></P>
+<P Id="12" Ref="103"></P>
+<P Id="13" Ref="104"></P>
+<P Id="14" Ref="136"></P>
+<P Id="15" Ref="137"></P>
+<P Id="16" Ref="138"></P>
+<P Id="17" Ref="139"></P>
+<P Id="18" Ref="140"></P>
+<P Id="19" Ref="141"></P>
+<P Id="20" Ref="142"></P>
+<P Id="21" Ref="143"></P>
+<P Id="22" Ref="144"></P>
+<P Id="23" Ref="145"></P>
+<P Id="24" Ref="146"></P>
+<P Id="25" Ref="147"></P>
+<P Id="26" Ref="148"></P>
+<P Id="27" Ref="149"></P>
+<P Id="28" Ref="150"></P>
+<P Id="29" Ref="151"></P>
+<P Id="30" Ref="152"></P>
+<P Id="31" Ref="153"></P>
+<P Id="32" Ref="154"></P>
+<P Id="33" Ref="155"></P>
+<P Id="34" Ref="156"></P>
+<P Id="35" Ref="157"></P>
+<P Id="36" Ref="158"></P>
+<P Id="37" Ref="159"></P>
+<P Id="38" Ref="160"></P>
+<P Id="39" Ref="161"></P>
+<P Id="40" Ref="162"></P>
+<P Id="41" Ref="163"></P>
+<P Id="42" Ref="165"></P>
+</OBJECT>
+<OBJECT Id="12">
+<P Id="0">
+<F Id="0" Ref="118"></F>
+<F Id="1" Ref="119"></F>
+</P>
+<P Id="1">
+<F Id="0" Ref="120"></F>
+<F Id="1" Ref="121"></F>
+</P>
+<P Id="2">
+<F Id="0" Ref="122"></F>
+<F Id="1" Ref="123"></F>
+</P>
+<P Id="3">
+<F Id="0" Ref="124"></F>
+<F Id="1" Ref="125"></F>
+</P>
+<P Id="4">
+<F Id="0" Ref="126"></F>
+<F Id="1" Ref="127"></F>
+</P>
+<P Id="5">
+<F Id="0" Ref="128"></F>
+<F Id="1" Ref="129"></F>
+</P>
+<P Id="6">
+<F Id="0" Ref="130"></F>
+<F Id="1" Ref="131"></F>
+</P>
+<P Id="7">
+<F Id="0" Ref="132"></F>
+<F Id="1" Ref="133"></F>
+</P>
+</OBJECT>
+<OBJECT Id="30">
+<Scaling>2</Scaling>
+<P Id="0" Ref="107"></P>
+<P Id="1" Ref="108"></P>
+<P Id="2" Ref="109"></P>
+<P Id="3" Ref="110"></P>
+<P Id="4" Ref="112"></P>
+<P Id="5" Ref="113"></P>
+<P Id="6" Ref="114"></P>
+<P Id="7" Ref="115"></P>
+</OBJECT>
+</DEVICE>
+</LINE>
+</PROTOCOL>
+</DIRECTION>
+<DIRECTION Id="1" Key="84">
+<PROTOCOL Id="9" Key="85">
+<LINE Id="3" Key="86">
+<Interface>0</Interface>
+<BaudRate>2400</BaudRate>
+<SwitchedRX>0</SwitchedRX>
+<SwitchedTX>0</SwitchedTX>
+<PostTransmissionDelay>1</PostTransmissionDelay>
+<DEVICE Id="1" Key="87" Name="HORNERSTOWN">
+<REQUEST Id="0" Key="88">
+<Function>5</Function>
+<Variation>1</Variation>
+<Count>7</Count>
+<XCount>1</XCount>
+<YCount>2</YCount>
+</REQUEST>
+<OBJECT Id="1" Key="89">
+<GROUP Id="0" Key="90">
+<P Id="0" Key="91" Name="67291 OCB"></P>
+<P Id="1" Key="92" Name="67292 VCB"></P>
+<P Id="2" Key="93" Name="SPARE"></P>
+<P Id="3" Key="94" Name="SPARE"></P>
+<P Id="4" Key="95" Name="SPARE"></P>
+<P Id="5" Key="96" Name="SPARE"></P>
+<P Id="6" Key="97" Name="SPARE"></P>
+<P Id="7" Key="98" Name="SPARE"></P>
+<P Id="8" Key="99" Name="SPARE"></P>
+<P Id="9" Key="100" Name="SPARE"></P>
+<P Id="10" Key="101" Name="SPARE"></P>
+<P Id="11" Key="102" Name="SPARE"></P>
+<P Id="12" Key="103" Name="SPARE"></P>
+<P Id="13" Key="104" Name="SPARE"></P>
+</GROUP>
+</OBJECT>
+<OBJECT Id="2" Key="105">
+<GROUP Id="0" Key="106">
+<P Id="0" Key="107" Name="SPARE"></P>
+<P Id="1" Key="108" Name="SPARE"></P>
+<P Id="2" Key="109" Name="67291 MW"></P>
+<P Id="3" Key="110" Name="67291 MVAR"></P>
+</GROUP>
+<GROUP Id="1" Key="111">
+<P Id="0" Key="112" Name="67292 MW"></P>
+<P Id="1" Key="113" Name="67292 MVAR"></P>
+<P Id="2" Key="114" Name="SPARE"></P>
+<P Id="3" Key="115" Name="SPARE"></P>
+</GROUP>
+</OBJECT>
+<OBJECT Id="4" Key="116">
+<GROUP Id="1" Key="117">
+<P Id="0" Key="118" Name="ADAPTIVE RELAYING OFF"></P>
+<P Id="1" Key="119" Name="ADAPTIVE RELAYING ON"></P>
+<P Id="2" Key="120" Name="H60-2 LBSW OPEN"></P>
+<P Id="3" Key="121" Name="H60-2 LBSW CLOSE"></P>
+<P Id="4" Key="122" Name="H60-3 LBSW OPEN"></P>
+<P Id="5" Key="123" Name="H60-3 LBSW CLOSE"></P>
+<P Id="6" Key="124" Name="67291 OCB OPEN "></P>
+<P Id="7" Key="125" Name="67291 OCB CLOSE"></P>
+<P Id="8" Key="126" Name="67292 VCB OPEN"></P>
+<P Id="9" Key="127" Name="67292 VCB CLOSE"></P>
+<P Id="10" Key="128" Name="SPARE"></P>
+<P Id="11" Key="129" Name="SPARE"></P>
+<P Id="12" Key="130" Name="SPARE"></P>
+<P Id="13" Key="131" Name="SPARE"></P>
+<P Id="14" Key="132" Name="SPARE"></P>
+<P Id="15" Key="133" Name="SPARE"></P>
+</GROUP>
+</OBJECT>
+<OBJECT Id="7" Key="134">
+<GROUP Id="0" Key="135">
+<P Id="28" Key="136" Name="H60-2 LBSW"></P>
+<P Id="29" Key="137" Name="H60-2 LBSW"></P>
+<P Id="30" Key="138" Name="H60-3 LBSW"></P>
+<P Id="31" Key="139" Name="H60-3 LBSW"></P>
+<P Id="32" Key="140" Name="SPARE-SCAN1"></P>
+<P Id="33" Key="141" Name="ADAPTIVE RELAYING"></P>
+<P Id="34" Key="142" Name="SPARE"></P>
+<P Id="35" Key="143" Name="SPARE"></P>
+<P Id="36" Key="144" Name="SPARE"></P>
+<P Id="37" Key="145" Name="SPARE"></P>
+<P Id="38" Key="146" Name="SPARE"></P>
+<P Id="39" Key="147" Name="SPARE"></P>
+<P Id="40" Key="148" Name="BATTERY"></P>
+<P Id="41" Key="149" Name="LOCAL/REMOTE"></P>
+<P Id="42" Key="150" Name="SPARE"></P>
+<P Id="43" Key="151" Name="SPARE"></P>
+<P Id="44" Key="152" Name="SPARE"></P>
+<P Id="45" Key="153" Name="SPARE"></P>
+<P Id="46" Key="154" Name="SPARE"></P>
+<P Id="47" Key="155" Name="SPARE"></P>
+<P Id="48" Key="156" Name="SPARE"></P>
+<P Id="49" Key="157" Name="SPARE"></P>
+<P Id="50" Key="158" Name="SPARE"></P>
+<P Id="51" Key="159" Name="SPARE"></P>
+<P Id="52" Key="160" Name="SPARE"></P>
+<P Id="53" Key="161" Name="SPARE"></P>
+<P Id="54" Key="162" Name="SPARE"></P>
+<P Id="55" Key="163" Name="SPARE"></P>
+</GROUP>
+</OBJECT>
+<OBJECT Id="16384" Key="164">
+<P Id="1" Key="165" Name="SPT COMM FAIL"></P>
+</OBJECT>
+</DEVICE>
+</LINE>
+</PROTOCOL>
+</DIRECTION>
+</SPT>
