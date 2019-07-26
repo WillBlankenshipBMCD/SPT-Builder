@@ -3,7 +3,7 @@ from lxml import etree
 
 #Extracting number of rows
 import xlrd
-file_loc = ("C:\Users\wblankenship\Documents\GitHub\SPT-Builder\Book1.xlsx")
+file_loc = ("C:\Users\wblankenship\Documents\GitHub\SPT-Builder\Hornerstown S9000.xlsx")
 wb = xlrd.open_workbook(file_loc)
 sheet = wb.sheet_by_name("Sheet1")
 rows = sheet.nrows
@@ -167,55 +167,57 @@ k = 0
 # this may have to be tweaked depending on whether the names are doubled or not
 for i in range((rows2/2)):
 
-	if c[i] != None:
-		
-		P2 = etree.Element("P", Id = str(i))
+	if c[i] == "UNDEFINED":
+
+		P2 = etree.Element("P", Id=str(i))
 		P2.text = "\n"
 		P2.tail = "\n"
 		object2.insert(i, P2)
-		
-		F1 = etree.Element("F", Id = "0", Ref = str(j))
+
+		F1 = etree.Element("F", Id="0")
 		F1.text = ""
 		F1.tail = "\n"
 		P2.insert(k, F1)
-		k+=1
+		k += 1
+		j += 1
+		controlNums[h] = j
+		h += 1
+
+		F2 = etree.Element("F", Id="1")
+		F2.text = ""
+		F2.tail = "\n"
+		P2.insert(k, F2)
+		k += 1
+		j += 1
+		controlNums[h] = j
+		h += 1
+
+	elif c[i] != None:
+
+		P2 = etree.Element("P", Id=str(i))
+		P2.text = "\n"
+		P2.tail = "\n"
+		object2.insert(i, P2)
+
+		F1 = etree.Element("F", Id="0", Ref=str(j))
+		F1.text = ""
+		F1.tail = "\n"
+		P2.insert(k, F1)
+		k += 1
 		controlNums[h] = j
 		j += 1
 		h += 1
 
-		F2 = etree.Element("F", Id = "1", Ref = str(j))
+		F2 = etree.Element("F", Id="1", Ref=str(j))
 		F2.text = ""
 		F2.tail = "\n"
 		P2.insert(k, F2)
-		k+=1
+		k += 1
 		controlNums[h] = j
 		j += 1
 		h += 1
 
-	elif c[i] == "UNDEFINED":
-		
-		P2 = etree.Element("P", Id = str(i))
-		P2.text = "\n"
-		P2.tail = "\n"
-		object2.insert(i, P2)
-		
-		F1 = etree.Element("F", Id = "0")
-		F1.text = ""
-		F1.tail = "\n"
-		P2.insert(k, F1)
-		k+=1
-		j+=1
-		controlNums[h] = j
-		h += 1
-		
-		F2 = etree.Element("F", Id = "1")
-		F2.text = ""
-		F2.tail = "\n"
-		P2.insert(k, F2)
-		k+=1
-		j+=1
-		controlNums[h] = j
-		h += 1
+
 		
 	
 # start of Object 3 - for Analog Points ID = 30
@@ -349,7 +351,7 @@ for i in range(rows):
 		break
 	#checks if the cell is either empty or a NL binary point
 	if b[i] != None and b[i] != "NL":
-		P4 = etree.Element("P", Id = str(i), Key = str(binaryNums[i]), Name = str(binarytags[i]).replace(" ", "_").replace("\\","_").replace("//","_").replace("-","_").upper())
+		P4 = etree.Element("P", Id = str(i), Key = str(binaryNums[i]), Name = str(binarytags[i]).replace(" ", "_").replace("\\","_").replace("/","_").replace("-","_").upper())
 		P4.text = ""
 		P4.tail = "\n"
 		group1.insert(i, P4)
@@ -394,7 +396,7 @@ for i in range(rows3/4):
 	
 	for h in range (4):
 
-		P5 = etree.Element("P", Id = str(h), Key = str(analogNums[j]), Name = str(analogtags[k]).replace(" ", "_").replace("\\","_").replace("//","_").replace("-","_").upper())
+		P5 = etree.Element("P", Id = str(h), Key = str(analogNums[j]), Name = str(analogtags[k]).replace(" ", "_").replace("\\","_").replace("/","_").replace("-","_").upper())
 		P5.text = ""
 		P5.tail = "\n"
 		analogGroups.insert(h,P5)
@@ -443,7 +445,7 @@ for i in range(controlNumGroups):
 			P6.tail = "\n"
 			controlGroups.insert(h, P6)
 		elif controltags[k] != "":
-			P6 = etree.Element("P", Id=str(h), Key=str(controlNums[j]), Name=str(controltags[k]).replace(" ", "_").replace("\\", "_").replace("//", "_").replace("-", "_").upper() + "_" + str(sheet.cell_value(a,5)))
+			P6 = etree.Element("P", Id=str(h), Key=str(controlNums[j]), Name=str(controltags[k]).replace(" ", "_").replace("\\", "_").replace("/", "_").replace("-", "_").upper() + "_" + str(sheet.cell_value(a,5).replace(" ", "_")))
 			P6.text = ""
 			P6.tail = "\n"
 			controlGroups.insert(h, P6)
@@ -488,7 +490,7 @@ for i in range(rows):
 		l += 1
 
 	elif b[i] != "CD":
-		P7 = etree.Element("P", Id=str(l), Key=str(binaryNums[l]), Name=str(binarytags[l]).replace(" ", "_").replace("\\", "_").replace("//", "_").replace("-","_").upper())
+		P7 = etree.Element("P", Id=str(l), Key=str(binaryNums[l]), Name=str(binarytags[l]).replace(" ", "_").replace("\\", "_").replace("/", "_").replace("-","_").replace("  ", "_").upper())
 		P7.text = ""
 		P7.tail = "\n"
 		P7.tail = "\n"
@@ -501,7 +503,7 @@ object8.text = "\n"
 object8.tail = "\n"
 device2.insert(5, object8)
 
-P8 = etree.Element("P", Id = "0", Key=str(binaryNums[l]), Name=str(binarytags[l]).replace(" ", "_").replace("\\", "_").replace("//", "_").replace("-","_").upper())
+P8 = etree.Element("P", Id = "0", Key=str(binaryNums[l]), Name=str(binarytags[l]).replace(" ", "_").replace("\\", "_").replace("/", "_").replace("-","_").replace("  ", "_").upper())
 P8.text = ""
 P8.tail = "\n"
 object8.insert(0, P8)
