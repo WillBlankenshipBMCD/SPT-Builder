@@ -140,6 +140,8 @@
 <LINE Id="2" Key="113">
 <Interface>0</Interface>
 <BaudRate>1200</BaudRate>
+<SwitchedRX>1</SwitchedRX>
+<SwitchedTX>1</SwitchedTX>
 <DEVICE Id="3" Key="114" Name="Millhurst_TRWS9">
 <REQUEST Id="0" Key="115">
 <Function>5</Function>
