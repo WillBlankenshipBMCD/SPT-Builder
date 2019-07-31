@@ -6,7 +6,7 @@
 <BaudRate>9600</BaudRate>
 <SwitchedRX>0</SwitchedRX>
 <SwitchedTX>0</SwitchedTX>
-<DEVICE Id="10220" Name="toEMS">
+<DEVICE Id="10237" Name="toEMS">
 <OBJECT Id="1">
 <P Id="0" Ref="118"></P>
 <P Id="1" Ref="119"></P>
@@ -95,6 +95,10 @@
 <P Id="5" Ref="182"></P>
 <P Id="6" Ref="183"></P>
 <P Id="7" Ref="184"></P>
+<P Id="8"></P>
+<P Id="9"></P>
+<P Id="10"></P>
+<P Id="11"></P>
 </OBJECT>
 </DEVICE>
 </LINE>
@@ -104,8 +108,10 @@
 <PROTOCOL Id="9" Key="112">
 <LINE Id="2" Key="113">
 <Interface>0</Interface>
-<BaudRate>2400</BaudRate>
-<DEVICE Id="1" Key="114" Name="Hornerstown_TRWS9">
+<BaudRate>1200</BaudRate>
+<InvertRX>1</InvertRX>
+<InvertTX>1</InvertTX>
+<DEVICE Id="3" Key="114" Name="Millhurst_TRWS9">
 <REQUEST Id="0" Key="115">
 <Function>5</Function>
 <Variation>1</Variation>
@@ -114,38 +120,44 @@
 </REQUEST>
 <OBJECT Id="1" Key="116">
 <GROUP Id="0" Key="117">
-<P Id="0" Key="118" Name="67291_OCB"></P>
-<P Id="1" Key="119" Name="67292_VCB"></P>
-<P Id="2" Key="120" Name="SPARE"></P>
-<P Id="3" Key="121" Name="SPARE"></P>
-<P Id="4" Key="122" Name="SPARE"></P>
-<P Id="5" Key="123" Name="SPARE"></P>
-<P Id="6" Key="124" Name="SPARE"></P>
-<P Id="7" Key="125" Name="SPARE"></P>
-<P Id="8" Key="126" Name="SPARE"></P>
-<P Id="9" Key="127" Name="SPARE"></P>
+<P Id="0" Key="118" Name="BK_1_VCB"></P>
+<P Id="1" Key="119" Name="47417_VCB"></P>
+<P Id="2" Key="120" Name="BT_VCB"></P>
+<P Id="3" Key="121" Name="BK_2_VCB"></P>
+<P Id="4" Key="122" Name="47418_VCB"></P>
+<P Id="5" Key="123" Name="47419_VCB"></P>
+<P Id="6" Key="124" Name="47416_VCB"></P>
+<P Id="7" Key="125" Name="47415_VCB"></P>
+<P Id="8" Key="126" Name="DIAL_IN_ACCESS"></P>
+<P Id="9" Key="127" Name="BK_1_CKT_INT_CI_2"></P>
 <P Id="10" Key="128" Name="SPARE"></P>
 <P Id="11" Key="129" Name="SPARE"></P>
 <P Id="12" Key="130" Name="SPARE"></P>
 <P Id="13" Key="131" Name="SPARE"></P>
 </GROUP>
 </OBJECT>
-<OBJECT Id="2" Key="186">
-<GROUP Id="0" Key="187">
+<OBJECT Id="2" Key="190">
+<GROUP Id="0" Key="191">
 <P Id="0" Key="177" Name="SPARE"></P>
 <P Id="1" Key="178" Name="SPARE"></P>
-<P Id="2" Key="179" Name="67291_MW"></P>
-<P Id="3" Key="180" Name="67291_MVAR"></P>
+<P Id="2" Key="179" Name="BK_1_MW"></P>
+<P Id="3" Key="180" Name="BK_1_MVAR"></P>
 </GROUP>
-<GROUP Id="1" Key="188">
-<P Id="0" Key="181" Name="67292_MW"></P>
-<P Id="1" Key="182" Name="67292_MVAR"></P>
-<P Id="2" Key="183" Name="SPARE"></P>
-<P Id="3" Key="184" Name="SPARE"></P>
+<GROUP Id="1" Key="192">
+<P Id="0" Key="181" Name="BK_2_MW"></P>
+<P Id="1" Key="182" Name="BK_2_MVAR"></P>
+<P Id="2" Key="183" Name="47416_PHASE_A_AMPS"></P>
+<P Id="3" Key="184" Name="47416_PHASE_B_AMPS"></P>
+</GROUP>
+<GROUP Id="2" Key="193">
+<P Id="0" Key="185" Name="47416_PHASE_C_AMPS"></P>
+<P Id="1" Key="186" Name="47417_PHASE_A_AMPS"></P>
+<P Id="2" Key="187" Name="47417_PHASE_B_AMPS"></P>
+<P Id="3" Key="188" Name="47417_PHASE_C_AMPS"></P>
 </GROUP>
 </OBJECT>
-<OBJECT Id="4" Key="189">
-<GROUP Id="1" Key="190">
+<OBJECT Id="4" Key="194">
+<GROUP Id="1" Key="195">
 <P Id="0" Key="161" Name="ADAPTIVE_RELAYING_OFF"></P>
 <P Id="1" Key="162" Name="ADAPTIVE_RELAYING_ON"></P>
 <P Id="2" Key="163" Name="H60_2_LBSW_OPEN"></P>
@@ -164,21 +176,21 @@
 <P Id="15" Key="176" Name="SPARE"></P>
 </GROUP>
 </OBJECT>
-<OBJECT Id="7" Key="191">
-<GROUP Id="0" Key="192">
-<P Id="14" Key="132" Name="H60_2_LBSW"></P>
-<P Id="15" Key="133" Name="H60_2_LBSW"></P>
-<P Id="16" Key="134" Name="H60_3_LBSW"></P>
-<P Id="17" Key="135" Name="H60_3_LBSW"></P>
-<P Id="18" Key="136" Name="SPARE_SCAN1"></P>
-<P Id="19" Key="137" Name="ADAPTIVE_RELAYING"></P>
-<P Id="20" Key="138" Name="SPARE"></P>
-<P Id="21" Key="139" Name="SPARE"></P>
-<P Id="22" Key="140" Name="SPARE"></P>
-<P Id="23" Key="141" Name="SPARE"></P>
-<P Id="24" Key="142" Name="SPARE"></P>
-<P Id="25" Key="143" Name="SPARE"></P>
-<P Id="26" Key="144" Name="BATTERY"></P>
+<OBJECT Id="7" Key="196">
+<GROUP Id="0" Key="197">
+<P Id="14" Key="132" Name="I87_LBSW"></P>
+<P Id="15" Key="133" Name="I87_LBSW"></P>
+<P Id="16" Key="134" Name="NO_6_LBSW"></P>
+<P Id="17" Key="135" Name="NO_6_LBSW"></P>
+<P Id="18" Key="136" Name="A53_LBSW"></P>
+<P Id="19" Key="137" Name="A53_LBSW"></P>
+<P Id="20" Key="138" Name="BK_1_ALRM"></P>
+<P Id="21" Key="139" Name="BK_2_ALRM"></P>
+<P Id="22" Key="140" Name="CAP_1_VCB"></P>
+<P Id="23" Key="141" Name="DX_RELAY_FAIL"></P>
+<P Id="24" Key="142" Name="LOSS_OF_POTENTIAL"></P>
+<P Id="25" Key="143" Name="BK_1_CKT_INT_CI_2_SEL_TRBL"></P>
+<P Id="26" Key="144" Name="ADAPTIVE_RELAYING"></P>
 <P Id="27" Key="145" Name="LOCAL_REMOTE"></P>
 <P Id="28" Key="146"></P>
 <P Id="29" Key="147"></P>
@@ -196,7 +208,7 @@
 <P Id="41" Key="159"></P>
 </GROUP>
 </OBJECT>
-<OBJECT Id="16384" Key="193">
+<OBJECT Id="16384" Key="198">
 <P Id="0" Key="160" Name="SPT_COMM_FAIL"></P>
 </OBJECT>
 </DEVICE>

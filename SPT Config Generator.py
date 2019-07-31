@@ -1,6 +1,6 @@
 
 from lxml import etree
-import Tkinter as tk
+from Tkinter import *
 
 #Extracting number of rows
 import xlrd
@@ -22,63 +22,116 @@ analogNums = [None] * rows
 controlNums = [None] * rows
 
 rows2 = 0
-rows3 = 0
+rows4 = 0
 
 # ***************************************************************************************Taking user input with Tkinter
-root = tk.Tk()
+
+root = Tk()
+
+variable = StringVar(root)
+variable.set("Yes") # default value
+variable2 = StringVar(root)
+variable2.set(1200)
+variable3 = StringVar(root)
+variable3.set(9600)
 
 def my_function():
+
     global stationName
     global emsBaudRate
     global emsLocalAddress
     global rtuBaudRate
     global rtuRemoteAddress
     global rxTxUserInput
+    global revision
+
+
+
+
 
     input1 = my_entry.get()
-    stationName = input1
-    input2 = my_entry1.get()
-    emsBaudRate = input2
-    input3 = my_entry2.get()
-    emsLocalAddress = input3
-    input4 = my_entry3.get()
-    rtuBaudRate = input4
-    input5 = my_entry4.get()
-    rtuRemoteAddress = input5
-    input6 = my_entry5.get()
-    rxTxUserInput = input6
+    stationName = str(input1)
+    # [:5] limits input to only 5 character no matter how long the input is
+    input2 = variable3.get()
+    emsBaudRate = str(input2)
+    input3 = my_entry2.get()[:5]
+    emsLocalAddress = str(input3)
+    input4 = variable2.get()
+    rtuBaudRate = str(input4)
+    input5 = my_entry4.get()[:5]
+    rtuRemoteAddress = str(input5)
+    input6 = variable.get()
+    rxTxUserInput = str(input6.upper())
+    input7 = my_entry6.get()[:1]
+    revision = str(input7)
     root.destroy()
 
-my_label = tk.Label(root, text = "Station Name")
+
+# used for determining that user input is a digit
+def testVal(inStr,acttyp):
+    if acttyp == '1': #insert
+        if not inStr.isdigit() and inStr > 10000:
+            return False
+    return True
+
+def testVal2(inStr,acttyp):
+    if acttyp == '1': #insert
+        if inStr.isdigit():
+            return False
+    return True
+
+
+
+my_label = Label(root, text = "Station Name")
 my_label.grid(row = 0, column = 0)
-my_entry = tk.Entry(root)
+# validates that user input is only letters with testVal2
+my_entry = Entry(root, validate="key")
+my_entry['validatecommand'] = (my_entry.register(testVal2),'%P','%d')
+my_entry.pack()
 my_entry.grid(row = 0, column = 1)
 
-my_label = tk.Label(root, text = "EMS Baud Rate")
+my_label = Label(root, text = "EMS Baud Rate")
 my_label.grid(row = 1, column = 0)
-my_entry1 = tk.Entry(root)
+my_entry1 = Entry(root, validate="key")
+# validates that user input is only digits with testVal
+my_entry1 = OptionMenu(root, variable3, "9600")
+my_entry1.pack()
 my_entry1.grid(row = 1, column = 1)
 
-my_label = tk.Label(root, text = "To EMS Local Address (Example: 10237)")
+my_label = Label(root, text = "To EMS Local Address (Example: 10237)")
 my_label.grid(row = 2, column = 0)
-my_entry2 = tk.Entry(root)
+my_entry2 = Entry(root, validate="key")
+my_entry2['validatecommand'] = (my_entry2.register(testVal),'%P','%d')
+my_entry2.pack()
 my_entry2.grid(row = 2, column = 1)
 
-my_label = tk.Label(root, text = "RTU Baud Rate")
+my_label = Label(root, text = "RTU Baud Rate")
 my_label.grid(row = 3, column = 0)
-my_entry3 = tk.Entry(root)
+my_entry3 = OptionMenu(root, variable2, "1200", "2400")
+my_entry3.pack()
 my_entry3.grid(row = 3, column = 1)
 
-my_label = tk.Label(root, text = "To RTU Remote Address (Example: 3)")
+my_label = Label(root, text = "To RTU Remote Address (Example: 3)")
 my_label.grid(row = 4, column = 0)
-my_entry4 = tk.Entry(root)
+my_entry4 = Entry(root, validate="key")
+my_entry4['validatecommand'] = (my_entry4.register(testVal),'%P','%d')
+my_entry4.pack()
+
 my_entry4.grid(row = 4, column = 1)
 
 #changes whether the switched rx / tx = 0 for no modem, False or 1 for modem, True
-my_label = tk.Label(root, text = "Switched RX and Switched TX - Is there a modem? Answer: 'Yes' or 'No'")
+my_label = Label(root, text = "Switched RX and Switched TX - Is there a modem? Answer: 'Yes' or 'No'")
 my_label.grid(row = 5, column = 0)
-my_entry5 = tk.Entry(root)
+my_entry5 = OptionMenu(root, variable, "Yes", "No")
+my_entry5.pack()
 my_entry5.grid(row = 5, column = 1)
+
+my_label = Label(root, text = "Config Revision?")
+my_label.grid(row = 6, column = 0)
+my_entry6 = Entry(root, validate="key")
+my_entry6['validatecommand'] = (my_entry6.register(testVal2),'%P','%d')
+my_entry6.pack()
+my_entry6.grid(row = 6, column = 1)
 
 # Variables for data collected from the user to create the config
 stationName = ""
@@ -86,12 +139,14 @@ emsBaudRate = ""
 emsLocalAddress = ""
 rtuBaudRate = ""
 rtuRemoteAddress = ""
+revision = ""
 rxTxUserInput = ""
-RxTxAdded = ""
 
-my_button = tk.Button(root, text = "Submit", command = my_function)
-my_button.grid(row = 6, column = 1)
+my_button = Button(root, text = "Submit", command = my_function)
+my_button.grid(row = 7, column = 1)
 
+root.title("SPT Generator")
+root.resizable(0, 0)
 root.mainloop()
 
 
@@ -104,11 +159,12 @@ for x in range(sheet.nrows):
         rows2 += 1
 
 
-# determing the number of filled rows to create row3. This is used for calculating how many analog inputs to add. This will have to be tested for different cases.
+# determing the number of filled rows to create rows4. This is used for calculating how many analog inputs to add. This will have to be tested for different cases.
 for x in range(sheet.nrows):
-    cellValue = sheet.cell_value(x,3)
+    cellValue = sheet.cell_value(x,4)
     if cellValue != "":
-        rows3 += 1
+        rows4 = rows4 + 1
+
 
 # for determing the number of non empty cell values for the binary points column 
 for x in range(sheet.nrows):
@@ -128,7 +184,7 @@ for x in range(rows2/2):
 
 # collecting the control function from the book1 excel sheet
 for x in range(rows2):
-    cellValue = sheet.cell_value(x,5)
+    cellValue = sheet.cell_value(x,3)
     if cellValue != "":
         controlTagsOperations[x] = cellValue
     else:
@@ -304,7 +360,7 @@ device1.insert(2, object3)
 i = 0
 
 # adding analog points on the server side
-for i in range(rows3):
+for i in range(rows4):
     if c[i] != None:
         P3 = etree.Element("P", Id = str(i), Ref = str(j))
         P3.text = ""
@@ -337,7 +393,7 @@ protocol2.text = "\n"
 protocol2.tail = "\n"
 direction2.insert(0, protocol2)
 
-#start of line1 for server side portion
+#start of line2 for server side portion
 line2 = etree.Element("LINE", Id = "2", Key = "113" )
 line2.text = "\n"
 line2.tail = "\n"
@@ -355,12 +411,23 @@ baudrate2.text = rtuBaudRate
 baudrate2.tail = "\n"
 line2.insert(2, baudrate2)
 
+#start of InvertRX and InvertTX  for server side portion
+if rxTxUserInput == "YES":
+    invertRX = etree.Element("InvertRX")
+    invertRX.text = "1"
+    invertRX.tail = "\n"
+    line2.insert(3, invertRX)
+    invertTX = etree.Element("InvertTX")
+    invertTX.text = "1"
+    invertTX.tail = "\n"
+    line2.insert(4, invertTX)
+
 #where data needs to be collected from the user, i.e. Address for RTU, and Name
 #start of Device
 device2 = etree.Element("DEVICE", Id = rtuRemoteAddress, Key = "114", Name = stationName + "_TRWS9")
 device2.text = "\n"
 device2.tail = "\n"
-line2.insert(3, device2)
+line2.insert(5, device2)
 
 #start of request 
 request = etree.Element("REQUEST", Id = "0", Key = "115")
@@ -451,8 +518,8 @@ objGroupNums+=1
 
 
 # for putting all the analog points in a list
-for x in range(rows3):
-    cellValue = sheet.cell_value(x,3)
+for x in range(rows4):
+    cellValue = sheet.cell_value(x,4)
     if cellValue != "":
         analogtags[x] = cellValue
     else:
@@ -464,7 +531,7 @@ h = 0
 j = 0
 #loops for creating the client side analog points besed on their name and frame #
 #creating each frame or "GROUP"
-for i in range(rows3/4):
+for i in range(rows4/4):
 
     analogGroups = etree.Element("GROUP", Id = str(i), Key = str(objGroupNums))
     analogGroups.text = "\n"
@@ -536,12 +603,12 @@ for i in range(controlNumGroups):
             P6 = etree.Element("P", Id=str(h), Key=str(controlNums[j]), Name=str(controltags[k]).strip().replace(" ", "_").replace("\\", "_")
                                .replace("/", "_").replace("-", "_").replace("&", "")
                                .replace("<", "").replace(">", "").replace('"',"").upper() + "_" +
-                                str(sheet.cell_value(a,5).replace(" ", "_").replace("&", "")
+                                str(sheet.cell_value(a,3).replace(" ", "_").replace("&", "")
                                 .replace("<", "").replace(">", "").replace('"',"")))
             P6.text = ""
             P6.tail = "\n"
             controlGroups.insert(h, P6)
-        if sheet.cell_value(a, 5).upper() == "DISABLE":
+        if sheet.cell_value(a, 3).upper() == "DISABLE":
             invert = etree.Element("Invert")
             invert.text = "0"
             invert.tail = "\n"
@@ -607,6 +674,6 @@ object8.insert(0, P8)
 
 
 tree = etree.ElementTree(root)
-tree.write(stationName + " ASE SPT Alert 9000 DNP Rev " + "A" + ".xml")
+tree.write(stationName + " ASE SPT Alert 9000 DNP Rev " + revision.upper() + ".xml")
 #add for addtional info - - - > ,xml_declaration=True,   encoding="utf-8")  
 
