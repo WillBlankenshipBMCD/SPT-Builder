@@ -1,0 +1,257 @@
+<SPT Id="1">
+<TimeSource>2</TimeSource>
+<DIRECTION Id="0">
+<PROTOCOL Id="1">
+<Unsolicited>1</Unsolicited>
+<PrimaryAddress>10</PrimaryAddress>
+<Startup>1</Startup>
+<LinkConfirm>1</LinkConfirm>
+<LINE Id="1">
+<Interface>0</Interface>
+<BaudRate>38400</BaudRate>
+<SwitchedRX>0</SwitchedRX>
+<SwitchedTX>0</SwitchedTX>
+<DEVICE Id="20289" Name="toEMS">
+<OBJECT Id="1">
+<P Id="0" Ref="91"></P>
+<P Id="1" Ref="92"></P>
+<P Id="2" Ref="93"></P>
+<P Id="3" Ref="94"></P>
+<P Id="4" Ref="95"></P>
+<P Id="5" Ref="96"></P>
+<P Id="6" Ref="97"></P>
+<P Id="7" Ref="98"></P>
+<P Id="8" Ref="100"></P>
+<P Id="9" Ref="101"></P>
+<P Id="10" Ref="102"></P>
+<P Id="11" Ref="103"></P>
+<P Id="12" Ref="104"></P>
+<P Id="13" Ref="105"></P>
+<P Id="14" Ref="106"></P>
+<P Id="15" Ref="107"></P>
+<P Id="16" Ref="110"></P>
+<P Id="17" Ref="111"></P>
+<P Id="18" Ref="112"></P>
+<P Id="19" Ref="113"></P>
+<P Id="20" Ref="114"></P>
+<P Id="21" Ref="115"></P>
+<P Id="22" Ref="116"></P>
+<P Id="23" Ref="117"></P>
+<P Id="24" Ref="118"></P>
+<P Id="25" Ref="119"></P>
+<P Id="26" Ref="120"></P>
+<P Id="27" Ref="121"></P>
+<P Id="28" Ref="122"></P>
+<P Id="29" Ref="123"></P>
+<P Id="30" Ref="124"></P>
+<P Id="31" Ref="125"></P>
+<P Id="32" Ref="195"></P>
+</OBJECT>
+<OBJECT Id="12">
+<P Id="0">
+<F Id="0" Ref="147"></F>
+<F Id="1" Ref="148"></F>
+</P>
+<P Id="1">
+<F Id="0" Ref="150"></F>
+<F Id="1" Ref="151"></F>
+</P>
+<P Id="2">
+<F Id="0" Ref="153"></F>
+<F Id="1" Ref="154"></F>
+</P>
+<P Id="3">
+<F Id="0" Ref="156"></F>
+<F Id="1" Ref="157"></F>
+</P>
+<P Id="4">
+<F Id="0" Ref="159"></F>
+<F Id="1" Ref="160"></F>
+</P>
+<P Id="5">
+<F Id="0" Ref="162"></F>
+<F Id="1" Ref="163"></F>
+</P>
+<P Id="6">
+<F Id="0" Ref="165"></F>
+<F Id="1" Ref="166"></F>
+</P>
+<P Id="7">
+<F Id="0" Ref="168"></F>
+<F Id="1" Ref="169"></F>
+</P>
+</OBJECT>
+<OBJECT Id="30">
+<P Id="0" Ref="127"></P>
+<P Id="1" Ref="128"></P>
+<P Id="2" Ref="129"></P>
+<P Id="3" Ref="130"></P>
+<P Id="4" Ref="131"></P>
+<P Id="5" Ref="132"></P>
+<P Id="6" Ref="133"></P>
+<P Id="7" Ref="134"></P>
+<P Id="8" Ref="135"></P>
+<P Id="9" Ref="136"></P>
+<P Id="10" Ref="137"></P>
+<P Id="11" Ref="138"></P>
+<P Id="12" Ref="139"></P>
+<P Id="13" Ref="140"></P>
+<P Id="14" Ref="141"></P>
+<P Id="15" Ref="142"></P>
+<P Id="16" Ref="143"></P>
+<P Id="17" Ref="144"></P>
+</OBJECT>
+</DEVICE>
+</LINE>
+</PROTOCOL>
+</DIRECTION>
+<DIRECTION Id="1" Key="84">
+<PROTOCOL Id="6" Key="85">
+<LINE Id="3" Key="86">
+<Interface>0</Interface>
+<BaudRate>1200</BaudRate>
+<SwitchedRX>1</SwitchedRX>
+<SwitchedTX>1</SwitchedTX>
+<PostTransmissionDelay>1</PostTransmissionDelay>
+<DEVICE Id="2" Key="87" Name="Gore_Junction_CDC_44-550">
+<REQUEST Id="0" Key="88">
+<Function>3</Function>
+<Frequency>2000</Frequency>
+<Group>0</Group>
+</REQUEST>
+<OBJECT Id="1" Key="89">
+<P Id="0" Key="90">
+<F Id="0" Key="91" Name="Fairview East 115 kV CB"></F>
+<F Id="1" Key="92" Name="Erie S.-Green Garden 115 kV CB"></F>
+<F Id="2" Key="93" Name="Relay Failure"></F>
+<F Id="3" Key="94" Name="Carrier Failure"></F>
+<F Id="4" Key="95" Name="Relay Communications Reset"></F>
+<F Id="5" Key="96" Name="SPARE"></F>
+<F Id="6" Key="97" Name="SPARE"></F>
+<F Id="7" Key="98" Name="SPARE"></F>
+</P>
+<P Id="1" Key="99">
+<F Id="0" Key="100" Name="SPARE"></F>
+<F Id="1" Key="101" Name="SPARE"></F>
+<F Id="2" Key="102" Name="SPARE"></F>
+<F Id="3" Key="103" Name="SPARE"></F>
+<F Id="4" Key="104" Name="SPARE"></F>
+<F Id="5" Key="105" Name="SPARE"></F>
+<F Id="6" Key="106" Name="SPARE"></F>
+<F Id="7" Key="107" Name="SPARE"></F>
+</P>
+</OBJECT>
+<OBJECT Id="3" Key="108">
+<P Id="48" Key="109">
+<F Id="0" Key="110" Name="Local/Remote Switch - Status"></F>
+<F Id="1" Key="111" Name="DC Over/Under Voltage"></F>
+<F Id="2" Key="112" Name="Station Power"></F>
+<F Id="3" Key="113" Name="DC System Ground Detect"></F>
+<F Id="4" Key="114" Name="Rolling Mead.Primary Relay Inop"></F>
+<F Id="5" Key="115" Name="Rolling Mead.115 kV MOABS (Open)"></F>
+<F Id="6" Key="116" Name="Rolling Mead.115 kV MOABS(Close)"></F>
+<F Id="7" Key="117" Name="115 kV CB Breaker Failure"></F>
+<F Id="8" Key="118" Name="115 Fairv.E Break Fail Cutoff Sw"></F>
+<F Id="9" Key="119" Name="115 ES-GG Breaker Fail Cutoff Sw"></F>
+<F Id="10" Key="120" Name="Fair.East 115 kV CB Critical"></F>
+<F Id="11" Key="121" Name="Fair.East 115 kV CB Non-Critical"></F>
+<F Id="12" Key="122" Name="ES-GG 115 kV CB Critical"></F>
+<F Id="13" Key="123" Name="ES-GG 115 kV CB Non-Critical"></F>
+<F Id="14" Key="124" Name="115 kV CB Low SF-6 Gas"></F>
+<F Id="15" Key="125" Name="Trip Circuit Monitor"></F>
+</P>
+</OBJECT>
+<OBJECT Id="6" Key="126">
+<P Id="128" Key="127" Name="Spare"></P>
+<P Id="129" Key="128" Name="Spare"></P>
+<P Id="130" Key="129" Name="115 kV Bus V"></P>
+<P Id="131" Key="130" Name="Spare"></P>
+<P Id="132" Key="131" Name="Fairview East 115 kV MW"></P>
+<P Id="133" Key="132" Name="Fairview East 115 kV MVAR"></P>
+<P Id="134" Key="133" Name="Erie S.-Green Garden 115 kV MW"></P>
+<P Id="135" Key="134" Name="Erie S.-Green Garden 115 kV MVAR"></P>
+<P Id="136" Key="135" Name="Rolling Meadows 115 kV MW"></P>
+<P Id="137" Key="136" Name="Rolling Meadows 115 kV MVAR"></P>
+<P Id="138" Key="137" Name="Fairview E 115 Fault Distance"></P>
+<P Id="139" Key="138" Name="Erie S-GG  115 Fault Distance"></P>
+<P Id="140" Key="139" Name="SPARE"></P>
+<P Id="141" Key="140" Name="SPARE"></P>
+<P Id="142" Key="141" Name="SPARE"></P>
+<P Id="143" Key="142" Name="SPARE"></P>
+<P Id="144" Key="143" Name="SPARE"></P>
+<P Id="145" Key="144" Name="SPARE"></P>
+</OBJECT>
+<OBJECT Id="9" Key="145">
+<P Id="0" Key="146" Name="Erie S.-Green Gardn 115 kV CB">
+<F Id="0" Key="147" Name="Erie S. - Green Gardn 115kV CB Trip"></F>
+<F Id="1" Key="148" Name="Erie S. - Green Gardn 115kV CB Close"></F>
+</P>
+<P Id="1" Key="149" Name="Rolling Meadows 115 kV MOABS">
+<F Id="0" Key="150" Name="Rolling Meadows 115kV MOABS Trip"></F>
+<F Id="1" Key="151" Name="Rolling Meadows 115kV MOABS Close"></F>
+</P>
+<P Id="2" Key="152" Name="Fairview East 115 kV CB">
+<F Id="0" Key="153" Name="Fairview East 115kV CB Trip"></F>
+<F Id="1" Key="154" Name="Fairview East 115kV CB Close"></F>
+</P>
+<P Id="3" Key="155" Name="Relay Communications Reset">
+<F Id="0" Key="156" Name="Relay Communications Reset Alarm"></F>
+<F Id="1" Key="157" Name="Relay Communications Reset Normal"></F>
+</P>
+<P Id="4" Key="158" Name="SPARE">
+<F Id="0" Key="159"></F>
+<F Id="1" Key="160"></F>
+</P>
+<P Id="5" Key="161" Name="SPARE">
+<F Id="0" Key="162"></F>
+<F Id="1" Key="163"></F>
+</P>
+<P Id="6" Key="164" Name="SPARE">
+<F Id="0" Key="165"></F>
+<F Id="1" Key="166"></F>
+</P>
+<P Id="7" Key="167" Name="SPARE">
+<F Id="0" Key="168"></F>
+<F Id="1" Key="169"></F>
+</P>
+<P Id="8" Key="170" Name="SPARE">
+<F Id="0" Key="171"></F>
+<F Id="1" Key="172"></F>
+</P>
+<P Id="9" Key="173" Name="SPARE">
+<F Id="0" Key="174"></F>
+<F Id="1" Key="175"></F>
+</P>
+<P Id="10" Key="176" Name="SPARE">
+<F Id="0" Key="177"></F>
+<F Id="1" Key="178"></F>
+</P>
+<P Id="11" Key="179" Name="SPARE">
+<F Id="0" Key="180"></F>
+<F Id="1" Key="181"></F>
+</P>
+<P Id="12" Key="182" Name="SPARE">
+<F Id="0" Key="183"></F>
+<F Id="1" Key="184"></F>
+</P>
+<P Id="13" Key="185" Name="SPARE">
+<F Id="0" Key="186"></F>
+<F Id="1" Key="187"></F>
+</P>
+<P Id="14" Key="188" Name="SPARE">
+<F Id="0" Key="189"></F>
+<F Id="1" Key="190"></F>
+</P>
+<P Id="15" Key="191" Name="SPARE">
+<F Id="0" Key="192"></F>
+<F Id="1" Key="193"></F>
+</P>
+</OBJECT>
+<OBJECT Id="16384" Key="194">
+<P Id="0" Key="195" Name="SPT COMM FAIL"></P>
+</OBJECT>
+</DEVICE>
+</LINE>
+</PROTOCOL>
+</DIRECTION>
+</SPT>

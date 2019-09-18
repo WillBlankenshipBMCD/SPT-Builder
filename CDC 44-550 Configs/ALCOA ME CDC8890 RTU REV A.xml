@@ -1,0 +1,201 @@
+<SPT Id="1">
+<DIRECTION Id="0">
+<PROTOCOL Id="1">
+<LINE Id="1">
+<Interface>0</Interface>
+<BaudRate>9600</BaudRate>
+<SwitchedRX>0</SwitchedRX>
+<SwitchedTX>0</SwitchedTX>
+<DEVICE Id="15837" Name="toEMS">
+<OBJECT Id="1">
+<P Id="0" Name="B91" Ref="85"></P>
+<P Id="1" Name="B92" Ref="86"></P>
+<P Id="2" Name="B142" Ref="87"></P>
+<P Id="3" Name="B692" Ref="88"></P>
+<P Id="4" Name="SPARE" Ref="89"></P>
+<P Id="5" Name="SPARE" Ref="90"></P>
+<P Id="6" Name="SPARE" Ref="91"></P>
+<P Id="7" Name="TEST BREAKER" Ref="92"></P>
+<P Id="8" Name="RTU STATUS" Ref="95"></P>
+<P Id="9" Name="BATTERY ALARM" Ref="96"></P>
+<P Id="10" Name="B91 LOW AIR" Ref="97"></P>
+<P Id="11" Name="B92 LOW AIR" Ref="98"></P>
+<P Id="12" Name="B91 TONE" Ref="99"></P>
+<P Id="13" Name="B92 TONE" Ref="100"></P>
+<P Id="14" Name="91 LINE" Ref="101"></P>
+<P Id="15" Name="92 LINE" Ref="102"></P>
+<P Id="16" Name="69kV BUS DIFFERENTIAL" Ref="103"></P>
+<P Id="17" Name="RELAY TROUBLE" Ref="104"></P>
+<P Id="18" Name="TR NO1 TROUBLE" Ref="105"></P>
+<P Id="19" Name="TR NO2 TROUBLE" Ref="106"></P>
+<P Id="20" Name="B142 LOW AIR" Ref="107"></P>
+<P Id="21" Name="48 VDC BATTERY ALARM" Ref="108"></P>
+<P Id="22" Name="SPARE" Ref="109"></P>
+<P Id="23" Name="ADAPTIVE RELAYING" Ref="110"></P>
+<P Id="24" Name="SPT COMM FAIL" Ref="158"></P>
+</OBJECT>
+<OBJECT Id="12">
+<P Id="0" Name="SPARE">
+<F Id="0" Ref="134"></F>
+<F Id="1" Ref="135"></F>
+</P>
+<P Id="1" Name="B91">
+<F Id="0" Ref="137"></F>
+<F Id="1" Ref="138"></F>
+</P>
+<P Id="2" Name="B92">
+<F Id="0" Ref="140"></F>
+<F Id="1" Ref="141"></F>
+</P>
+<P Id="3" Name="B142">
+<F Id="0" Ref="143"></F>
+<F Id="1" Ref="144"></F>
+</P>
+<P Id="4" Name="TEST BREAKER">
+<F Id="0" Ref="146"></F>
+<F Id="1" Ref="147"></F>
+</P>
+<P Id="5" Name="B692 LINE BREAKER">
+<F Id="0" Ref="149"></F>
+<F Id="1" Ref="150"></F>
+</P>
+<P Id="6" Name="SPARE">
+<F Id="0" Ref="152"></F>
+<F Id="1" Ref="153"></F>
+</P>
+<P Id="7" Name="ADAPTIVE RELAYING">
+<F Id="0" Ref="155"></F>
+<F Id="1" Ref="156"></F>
+</P>
+</OBJECT>
+<OBJECT Id="30">
+<P Id="0" Name="SPARE" Ref="112"></P>
+<P Id="1" Name="SPARE" Ref="113"></P>
+<P Id="2" Name="91 LINE AMP A" Ref="114"></P>
+<P Id="3" Name="91 LINE AMP B" Ref="115"></P>
+<P Id="4" Name="91 LINE AMP C" Ref="116"></P>
+<P Id="5" Name="92 LINE AL_NCW AMP A" Ref="117"></P>
+<P Id="6" Name="92 LINE AL_NCW AMP B" Ref="118"></P>
+<P Id="7" Name="92 LINE AL_NCW AMP C" Ref="119"></P>
+<P Id="8" Name="692 LINE AMP A" Ref="120"></P>
+<P Id="9" Name="692 LINE AMP B" Ref="121"></P>
+<P Id="10" Name="692 LINE AMP C" Ref="122"></P>
+<P Id="11" Name="13.2kV BUS" Ref="123"></P>
+<P Id="12" Name="STATION BATTERY" Ref="124"></P>
+<P Id="13" Name="69kV BUS" Ref="125"></P>
+<P Id="14" Name="91 LINE MW" Ref="126"></P>
+<P Id="15" Name="91 LINE MX" Ref="127"></P>
+<P Id="16" Name="92 LINE AL_NCW MW" Ref="128"></P>
+<P Id="17" Name="92 LINE AL_NCW MX" Ref="129"></P>
+<P Id="18" Name="692 LINE MW" Ref="130"></P>
+<P Id="19" Name="692 LINE MX" Ref="131"></P>
+</OBJECT>
+</DEVICE>
+</LINE>
+</PROTOCOL>
+</DIRECTION>
+<DIRECTION Id="1" Key="78">
+<PROTOCOL Id="6" Key="79">
+<LINE Id="3" Key="80">
+<Interface>0</Interface>
+<BaudRate>1200</BaudRate>
+<DEVICE Id="2" Key="81" Name="ALCOA_CDC_8890">
+<REQUEST Id="0" Key="82">
+<Function>3</Function>
+</REQUEST>
+<OBJECT Id="1" Key="83">
+<P Id="0" Key="84">
+<F Id="0" Key="85" Name="B91"></F>
+<F Id="1" Key="86" Name="B92"></F>
+<F Id="2" Key="87" Name="B142"></F>
+<F Id="3" Key="88" Name="B692 LINE BREAKER"></F>
+<F Id="4" Key="89" Name="SPARE"></F>
+<F Id="5" Key="90" Name="SPARE"></F>
+<F Id="6" Key="91" Name="SPARE"></F>
+<F Id="7" Key="92" Name="TEST BREAKER"></F>
+</P>
+</OBJECT>
+<OBJECT Id="3" Key="93">
+<P Id="48" Key="94">
+<F Id="0" Key="95" Name="RTU STATUS"></F>
+<F Id="1" Key="96" Name="BATTERY ALARM"></F>
+<F Id="2" Key="97" Name="B91 LOW AIR"></F>
+<F Id="3" Key="98" Name="B92 LOW AIR"></F>
+<F Id="4" Key="99" Name="B91 TONE"></F>
+<F Id="5" Key="100" Name="B92 TONE"></F>
+<F Id="6" Key="101" Name="91 LINE"></F>
+<F Id="7" Key="102" Name="92 LINE"></F>
+<F Id="8" Key="103" Name="69kV BUS DIFFERENTIAL"></F>
+<F Id="9" Key="104" Name="RELAY TROUBLE"></F>
+<F Id="10" Key="105" Name="TR NO1 TROUBLE"></F>
+<F Id="11" Key="106" Name="TR NO2 TROUBLE"></F>
+<F Id="12" Key="107" Name="B142 LOW AIR"></F>
+<F Id="13" Key="108" Name="48 VDC BATTERY ALARM"></F>
+<F Id="14" Key="109" Name="SPARE"></F>
+<F Id="15" Key="110" Name="ADAPTIVE RELAYING"></F>
+</P>
+</OBJECT>
+<OBJECT Id="6" Key="111">
+<P Id="128" Key="112" Name="SPARE"></P>
+<P Id="129" Key="113" Name="SPARE"></P>
+<P Id="130" Key="114" Name="91 LINE AMP A"></P>
+<P Id="131" Key="115" Name="91 LINE AMP B"></P>
+<P Id="132" Key="116" Name="91 LINE AMP C"></P>
+<P Id="133" Key="117" Name="92 LINE AL_NCW AMP A"></P>
+<P Id="134" Key="118" Name="92 LINE AL_NCW AMP B"></P>
+<P Id="135" Key="119" Name="92 LINE AL_NCW AMP C"></P>
+<P Id="136" Key="120" Name="692 LINE AMP A"></P>
+<P Id="137" Key="121" Name="692 LINE AMP B"></P>
+<P Id="138" Key="122" Name="692 LINE AMP C"></P>
+<P Id="139" Key="123" Name="13.2kV BUS"></P>
+<P Id="140" Key="124" Name="STATION BATTERY"></P>
+<P Id="141" Key="125" Name="69kV BUS"></P>
+<P Id="142" Key="126" Name="91 LINE MW"></P>
+<P Id="143" Key="127" Name="91 LINE MX"></P>
+<P Id="144" Key="128" Name="92 LINE AL_NCW MW"></P>
+<P Id="145" Key="129" Name="92 LINE AL_NCW MX"></P>
+<P Id="146" Key="130" Name="692 LINE MW"></P>
+<P Id="147" Key="131" Name="692 LINE MX"></P>
+</OBJECT>
+<OBJECT Id="9" Key="132">
+<P Id="0" Key="133" Name="SPARE">
+<F Id="0" Key="134"></F>
+<F Id="1" Key="135"></F>
+</P>
+<P Id="1" Key="136" Name="B91">
+<F Id="0" Key="137"></F>
+<F Id="1" Key="138"></F>
+</P>
+<P Id="2" Key="139" Name="B92">
+<F Id="0" Key="140"></F>
+<F Id="1" Key="141"></F>
+</P>
+<P Id="3" Key="142" Name="B142">
+<F Id="0" Key="143"></F>
+<F Id="1" Key="144"></F>
+</P>
+<P Id="4" Key="145" Name="TEST BREAKER">
+<F Id="0" Key="146"></F>
+<F Id="1" Key="147"></F>
+</P>
+<P Id="5" Key="148" Name="B692 LINE BREAKER">
+<F Id="0" Key="149"></F>
+<F Id="1" Key="150"></F>
+</P>
+<P Id="6" Key="151" Name="SPARE">
+<F Id="0" Key="152"></F>
+<F Id="1" Key="153"></F>
+</P>
+<P Id="7" Key="154" Name="ADAPTIVE RELAYING">
+<F Id="0" Key="155"></F>
+<F Id="1" Key="156"></F>
+</P>
+</OBJECT>
+<OBJECT Id="16384" Key="157">
+<P Id="0" Key="158" Name="SPT COMM FAIL"></P>
+</OBJECT>
+</DEVICE>
+</LINE>
+</PROTOCOL>
+</DIRECTION>
+</SPT>

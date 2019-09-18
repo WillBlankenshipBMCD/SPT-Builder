@@ -1,0 +1,287 @@
+<SPT Id="1">
+<TimeSource>2</TimeSource>
+<DIRECTION Id="0">
+<PROTOCOL Id="1">
+<LINE Id="1">
+<Interface>0</Interface>
+<BaudRate>9600</BaudRate>
+<SwitchedRX>0</SwitchedRX>
+<SwitchedTX>0</SwitchedTX>
+<DEVICE Id="10186" Name="toEMS">
+<OBJECT Id="1">
+<P Id="0" Ref="126"></P>
+<P Id="1" Ref="127"></P>
+<P Id="2" Ref="128"></P>
+<P Id="3" Ref="129"></P>
+<P Id="4" Ref="130"></P>
+<P Id="5" Ref="131"></P>
+<P Id="6" Ref="132"></P>
+<P Id="7" Ref="133"></P>
+<P Id="8" Ref="134"></P>
+<P Id="9" Ref="135"></P>
+<P Id="10" Ref="136"></P>
+<P Id="11" Ref="137"></P>
+<P Id="12" Ref="138"></P>
+<P Id="13" Ref="139"></P>
+<P Id="14" Ref="140"></P>
+<P Id="15" Ref="141"></P>
+<P Id="16" Ref="107"></P>
+<P Id="17" Ref="108"></P>
+<P Id="18" Ref="109"></P>
+<P Id="19" Ref="110"></P>
+<P Id="20" Ref="111"></P>
+<P Id="21" Ref="112"></P>
+<P Id="22" Ref="113"></P>
+<P Id="23" Ref="114"></P>
+<P Id="24" Ref="116"></P>
+<P Id="25" Ref="117"></P>
+<P Id="26" Ref="118"></P>
+<P Id="27" Ref="119"></P>
+<P Id="28" Ref="120"></P>
+<P Id="29" Ref="121"></P>
+<P Id="30" Ref="122"></P>
+<P Id="31" Ref="123"></P>
+<P Id="32" Ref="203"></P>
+</OBJECT>
+<OBJECT Id="12">
+<P Id="0" Name="E707-1 LBSW">
+<F Id="0" Ref="155"></F>
+<F Id="1" Ref="156"></F>
+</P>
+<P Id="1" Name="NO 9 LBSW">
+<F Id="0" Ref="158"></F>
+<F Id="1" Ref="159"></F>
+</P>
+<P Id="2" Name="E707-2 LBSW">
+<F Id="0" Ref="161"></F>
+<F Id="1" Ref="162"></F>
+</P>
+<P Id="3" Name="BK 1 FUT OCB">
+<F Id="0" Ref="164"></F>
+<F Id="1" Ref="165"></F>
+</P>
+<P Id="4" Name="14704 OCB">
+<F Id="0" Ref="167"></F>
+<F Id="1" Ref="168"></F>
+</P>
+<P Id="5" Name="14705 OCB">
+<F Id="0" Ref="170"></F>
+<F Id="1" Ref="171"></F>
+</P>
+<P Id="6" Name="14706 OCB">
+<F Id="0" Ref="173"></F>
+<F Id="1" Ref="174"></F>
+</P>
+<P Id="7" Name="BK 2 VCB">
+<F Id="0" Ref="176"></F>
+<F Id="1" Ref="177"></F>
+</P>
+<P Id="8" Name="17702 VCB">
+<F Id="0" Ref="179"></F>
+<F Id="1" Ref="180"></F>
+</P>
+<P Id="9" Name="17703 VCB">
+<F Id="0" Ref="182"></F>
+<F Id="1" Ref="183"></F>
+</P>
+<P Id="10" Name="ADAPTIVE RELAYING">
+<F Id="0" Ref="185"></F>
+<F Id="1" Ref="186"></F>
+</P>
+<P Id="11" Name="SPARE">
+<F Id="0" Ref="188"></F>
+<F Id="1" Ref="189"></F>
+</P>
+<P Id="12" Name="SPARE">
+<F Id="0" Ref="191"></F>
+<F Id="1" Ref="192"></F>
+</P>
+<P Id="13" Name="SPARE">
+<F Id="0" Ref="194"></F>
+<F Id="1" Ref="195"></F>
+</P>
+<P Id="14" Name="SPARE">
+<F Id="0" Ref="197"></F>
+<F Id="1" Ref="198"></F>
+</P>
+<P Id="15" Name="CAP 2 B6 GCB">
+<F Id="0" Ref="200"></F>
+<F Id="1" Ref="201"></F>
+</P>
+</OBJECT>
+<OBJECT Id="30">
+<Scaling>2</Scaling>
+<P Id="0" Ref="143">
+<Scaling>2</Scaling>
+</P>
+<P Id="1" Ref="144">
+<Scaling>2</Scaling>
+</P>
+<P Id="2" Ref="145">
+<Scaling>2</Scaling>
+</P>
+<P Id="3" Ref="146">
+<Scaling>2</Scaling>
+</P>
+<P Id="4" Ref="147">
+<Scaling>2</Scaling>
+</P>
+<P Id="5" Ref="148">
+<Scaling>2</Scaling>
+</P>
+<P Id="6" Ref="149">
+<Scaling>2</Scaling>
+</P>
+<P Id="7" Ref="150">
+<Scaling>2</Scaling>
+</P>
+<P Id="8" Ref="151">
+<Scaling>2</Scaling>
+</P>
+<P Id="9" Ref="152">
+<Scaling>2</Scaling>
+</P>
+</OBJECT>
+</DEVICE>
+</LINE>
+</PROTOCOL>
+</DIRECTION>
+<DIRECTION Id="1" Key="100">
+<PROTOCOL Id="6" Key="101">
+<LINE Id="3" Key="102">
+<Interface>0</Interface>
+<BaudRate>1200</BaudRate>
+<PostTransmissionDelay>1</PostTransmissionDelay>
+<DEVICE Id="3" Key="103" Name="ANDOVER_CDC_44-550">
+<REQUEST Id="0" Key="104">
+<Function>3</Function>
+<Frequency>2000</Frequency>
+</REQUEST>
+<OBJECT Id="1" Key="105">
+<P Id="0" Key="106">
+<F Id="0" Key="107" Name="BK 1 FUT OCB"></F>
+<F Id="1" Key="108" Name="14704 OCB"></F>
+<F Id="2" Key="109" Name="14705 OCB"></F>
+<F Id="3" Key="110" Name="14706 OCB"></F>
+<F Id="4" Key="111" Name="BK 2 VCB"></F>
+<F Id="5" Key="112" Name="17702 VCB"></F>
+<F Id="6" Key="113" Name="17703 VCB"></F>
+<F Id="7" Key="114" Name="SPARE"></F>
+</P>
+<P Id="1" Key="115">
+<F Id="0" Key="116" Name="SPARE"></F>
+<F Id="1" Key="117" Name="SPARE"></F>
+<F Id="2" Key="118" Name="SPARE"></F>
+<F Id="3" Key="119" Name="BK 2 TANK PRESSURE"></F>
+<F Id="4" Key="120" Name="CAP 2 BKR"></F>
+<F Id="5" Key="121" Name="CAP 2 27/59X TRIP ALM"></F>
+<F Id="6" Key="122" Name="SPARE"></F>
+<F Id="7" Key="123" Name="SPARE"></F>
+</P>
+</OBJECT>
+<OBJECT Id="3" Key="124">
+<P Id="48" Key="125">
+<F Id="0" Key="126" Name="L/R SWITCH STATUS"></F>
+<F Id="1" Key="127" Name="STATION BATTERY"></F>
+<F Id="2" Key="128" Name="E707-1 LBSW"></F>
+<F Id="3" Key="129" Name="E707-1 LBSW"></F>
+<F Id="4" Key="130" Name="NO 9 LBSW"></F>
+<F Id="5" Key="131" Name="NO 9 LBSW"></F>
+<F Id="6" Key="132" Name="E707-2 LBSW"></F>
+<F Id="7" Key="133" Name="E707-2 LBSW"></F>
+<F Id="8" Key="134" Name="CAP 2 RELAY FAIL"></F>
+<F Id="9" Key="135" Name="CAP 2 PART. FAIL ALM"></F>
+<F Id="10" Key="136" Name="CAP 2 GCB LO GAS ALM"></F>
+<F Id="11" Key="137" Name="CAP 2 NEUT UNBAL ALM"></F>
+<F Id="12" Key="138" Name="CAP 2 OVERTEMP ALM"></F>
+<F Id="13" Key="139" Name="ADAPTIVE RELAYING"></F>
+<F Id="14" Key="140" Name="BK 1 OIL SPILL"></F>
+<F Id="15" Key="141" Name="BK 2 ALARMS"></F>
+</P>
+</OBJECT>
+<OBJECT Id="6" Key="142">
+<P Id="128" Key="143" Name="FULL SCALE"></P>
+<P Id="129" Key="144" Name="ZERO SCALE"></P>
+<P Id="130" Key="145" Name="BK 1 MW"></P>
+<P Id="131" Key="146" Name="BK 1 MVAR"></P>
+<P Id="132" Key="147" Name="BK 2 MW"></P>
+<P Id="133" Key="148" Name="BK 2 MVAR"></P>
+<P Id="134" Key="149" Name="SPARE"></P>
+<P Id="135" Key="150" Name="CAP BANK 2 VOLT"></P>
+<P Id="136" Key="151" Name="SPARE"></P>
+<P Id="137" Key="152" Name="SPARE"></P>
+</OBJECT>
+<OBJECT Id="9" Key="153">
+<P Id="0" Key="154" Name="E707-1 LBSW">
+<F Id="0" Key="155"></F>
+<F Id="1" Key="156"></F>
+</P>
+<P Id="1" Key="157" Name="NO 9 LBSW">
+<F Id="0" Key="158"></F>
+<F Id="1" Key="159"></F>
+</P>
+<P Id="2" Key="160" Name="E707-2 LBSW">
+<F Id="0" Key="161"></F>
+<F Id="1" Key="162"></F>
+</P>
+<P Id="3" Key="163" Name="BK 1 FUT OCB">
+<F Id="0" Key="164"></F>
+<F Id="1" Key="165"></F>
+</P>
+<P Id="4" Key="166" Name="14704 OCB">
+<F Id="0" Key="167"></F>
+<F Id="1" Key="168"></F>
+</P>
+<P Id="5" Key="169" Name="14705 OCB">
+<F Id="0" Key="170"></F>
+<F Id="1" Key="171"></F>
+</P>
+<P Id="6" Key="172" Name="14706 OCB">
+<F Id="0" Key="173"></F>
+<F Id="1" Key="174"></F>
+</P>
+<P Id="7" Key="175" Name="BK 2 VCB">
+<F Id="0" Key="176"></F>
+<F Id="1" Key="177"></F>
+</P>
+<P Id="8" Key="178" Name="17702 VCB">
+<F Id="0" Key="179"></F>
+<F Id="1" Key="180"></F>
+</P>
+<P Id="9" Key="181" Name="17703 VCB">
+<F Id="0" Key="182"></F>
+<F Id="1" Key="183"></F>
+</P>
+<P Id="10" Key="184" Name="ADAPTIVE RELAYING">
+<F Id="0" Key="185"></F>
+<F Id="1" Key="186"></F>
+</P>
+<P Id="11" Key="187" Name="SPARE">
+<F Id="0" Key="188"></F>
+<F Id="1" Key="189"></F>
+</P>
+<P Id="12" Key="190" Name="SPARE">
+<F Id="0" Key="191"></F>
+<F Id="1" Key="192"></F>
+</P>
+<P Id="13" Key="193" Name="SPARE">
+<F Id="0" Key="194"></F>
+<F Id="1" Key="195"></F>
+</P>
+<P Id="14" Key="196" Name="SPARE">
+<F Id="0" Key="197"></F>
+<F Id="1" Key="198"></F>
+</P>
+<P Id="15" Key="199" Name="CAP 2 B6 GCB">
+<F Id="0" Key="200"></F>
+<F Id="1" Key="201"></F>
+</P>
+</OBJECT>
+<OBJECT Id="16384" Key="202">
+<P Id="0" Key="203" Name="SPT COMM FAIL"></P>
+</OBJECT>
+</DEVICE>
+</LINE>
+</PROTOCOL>
+</DIRECTION>
+</SPT>

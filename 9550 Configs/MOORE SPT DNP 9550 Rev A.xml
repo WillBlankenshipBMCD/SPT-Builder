@@ -1,0 +1,208 @@
+<SPT Id="1">
+<DIRECTION Id="0">
+<PROTOCOL Id="1">
+<LINE Id="1">
+<Interface>0</Interface>
+<BaudRate>9600</BaudRate>
+<DEVICE Id="10191" Name="MOORE">
+<OBJECT Id="1">
+<P Id="0" Ref="111"></P>
+<P Id="1" Ref="112"></P>
+<P Id="2" Ref="113"></P>
+<P Id="3" Ref="114"></P>
+<P Id="4" Ref="115"></P>
+<P Id="5" Ref="116"></P>
+<P Id="6" Ref="117"></P>
+<P Id="7" Ref="118"></P>
+<P Id="8" Ref="119"></P>
+<P Id="9" Ref="120"></P>
+<P Id="10" Ref="121"></P>
+<P Id="11" Ref="122"></P>
+<P Id="12" Ref="123"></P>
+<P Id="13" Ref="124"></P>
+<P Id="14" Ref="125"></P>
+<P Id="15" Ref="126"></P>
+<P Id="16" Ref="127"></P>
+<P Id="17" Ref="129"></P>
+<P Id="18" Ref="131"></P>
+<P Id="19" Ref="133"></P>
+<P Id="20" Ref="135"></P>
+<P Id="21" Ref="137"></P>
+<P Id="22" Ref="139"></P>
+<P Id="23" Ref="141"></P>
+<P Id="24" Ref="143"></P>
+<P Id="25" Ref="145"></P>
+<P Id="26" Ref="147"></P>
+<P Id="27" Ref="149"></P>
+<P Id="28" Ref="151"></P>
+<P Id="29" Ref="153"></P>
+<P Id="30" Ref="155"></P>
+<P Id="31" Ref="157"></P>
+<P Id="32" Ref="160"></P>
+</OBJECT>
+<OBJECT Id="12">
+<P Id="0">
+<F Id="0" Ref="94"></F>
+<F Id="1" Ref="93"></F>
+</P>
+<P Id="1">
+<F Id="0" Ref="96"></F>
+<F Id="1" Ref="95"></F>
+</P>
+<P Id="2">
+<F Id="0" Ref="98"></F>
+<F Id="1" Ref="97"></F>
+</P>
+<P Id="3">
+<F Id="0" Ref="100"></F>
+<F Id="1" Ref="99"></F>
+</P>
+<P Id="4">
+<F Id="0" Ref="102"></F>
+<F Id="1" Ref="101"></F>
+</P>
+<P Id="5">
+<F Id="0" Ref="104"></F>
+<F Id="1" Ref="103"></F>
+</P>
+<P Id="6">
+<F Id="0" Ref="106"></F>
+<F Id="1" Ref="105"></F>
+</P>
+<P Id="7">
+<F Id="0" Ref="108"></F>
+<F Id="1" Ref="107"></F>
+</P>
+</OBJECT>
+<OBJECT Id="30">
+<P Id="0" Ref="82"></P>
+<P Id="1" Ref="83"></P>
+<P Id="2" Ref="84"></P>
+<P Id="3" Ref="85"></P>
+<P Id="4" Ref="87"></P>
+<P Id="5" Ref="88"></P>
+<P Id="6" Ref="89"></P>
+<P Id="7" Ref="90"></P>
+</OBJECT>
+</DEVICE>
+</LINE>
+</PROTOCOL>
+</DIRECTION>
+<DIRECTION Id="1" Key="74">
+<PROTOCOL Id="49" Key="75">
+<McdType>0</McdType>
+<StatusMSB>1</StatusMSB>
+<LINE Id="2" Key="76">
+<Interface>0</Interface>
+<BaudRate>2400</BaudRate>
+<SwitchedRX>0</SwitchedRX>
+<SwitchedTX>0</SwitchedTX>
+<PostTransmissionDelay>1</PostTransmissionDelay>
+<DEVICE Id="2" Key="77" Name="MOORE_OUTPOST_RTU">
+<REQUEST Id="0" Key="78">
+<Function>5</Function>
+<Variation>1</Variation>
+</REQUEST>
+<REQUEST Id="1" Key="79">
+<Function>5</Function>
+<Frequency>5000</Frequency>
+<Count>8</Count>
+<Variation>2</Variation>
+</REQUEST>
+<OBJECT Id="2" Key="80">
+<GROUP Id="0" Key="81">
+<P Id="0" Key="82" Name="SPARE"></P>
+<P Id="1" Key="83" Name="SPARE"></P>
+<P Id="2" Key="84" Name="4.8 KV"></P>
+<P Id="3" Key="85" Name="SPARE"></P>
+</GROUP>
+<GROUP Id="1" Key="86">
+<P Id="0" Key="87" Name="SPARE"></P>
+<P Id="1" Key="88" Name="SPARE"></P>
+<P Id="2" Key="89" Name="SPARE"></P>
+<P Id="3" Key="90" Name="SPARE"></P>
+</GROUP>
+</OBJECT>
+<OBJECT Id="4" Key="91">
+<Type>1</Type>
+<GROUP Id="0" Key="92">
+<P Id="0" Key="93" Name="SPARE"></P>
+<P Id="1" Key="94" Name="SPARE"></P>
+<P Id="2" Key="95" Name="SPARE"></P>
+<P Id="3" Key="96" Name="SPARE"></P>
+<P Id="4" Key="97" Name="24063 OCB CLOSE"></P>
+<P Id="5" Key="98" Name="24603 OCB OPEN"></P>
+<P Id="6" Key="99" Name="24588 OCB CLOSE"></P>
+<P Id="7" Key="100" Name="24588 OCB OPEN"></P>
+<P Id="8" Key="101" Name="SPARE"></P>
+<P Id="9" Key="102" Name="SPARE"></P>
+<P Id="10" Key="103" Name="SPARE"></P>
+<P Id="11" Key="104" Name="SPARE"></P>
+<P Id="12" Key="105" Name="SPARE"></P>
+<P Id="13" Key="106" Name="SPARE"></P>
+<P Id="14" Key="107" Name="SPARE"></P>
+<P Id="15" Key="108" Name="SPARE"></P>
+</GROUP>
+</OBJECT>
+<OBJECT Id="7" Key="109">
+<GROUP Id="0" Key="110">
+<P Id="0" Key="111" Name="LOCAL_REMOTE"></P>
+<P Id="1" Key="112" Name="BATTERY"></P>
+<P Id="2" Key="113" Name="SPARE"></P>
+<P Id="3" Key="114" Name="SPARE"></P>
+<P Id="4" Key="115" Name="SPARE"></P>
+<P Id="5" Key="116" Name="SPARE"></P>
+<P Id="6" Key="117" Name="SPARE"></P>
+<P Id="7" Key="118" Name="SPARE"></P>
+<P Id="8" Key="119" Name="SPARE"></P>
+<P Id="9" Key="120" Name="SPARE">
+<Text>ADAPTIVE_RELAY</Text>
+</P>
+<P Id="10" Key="121" Name="SPARE"></P>
+<P Id="11" Key="122" Name="SPARE"></P>
+<P Id="12" Key="123" Name="SPARE"></P>
+<P Id="13" Key="124" Name="SPARE"></P>
+<P Id="14" Key="125" Name="SPARE"></P>
+<P Id="15" Key="126" Name="SPARE"></P>
+<P Id="16" Key="127" Name="24603 OCB"></P>
+<P Id="17" Key="128"></P>
+<P Id="18" Key="129" Name="24588 OCB"></P>
+<P Id="19" Key="130"></P>
+<P Id="20" Key="131" Name="SPARE"></P>
+<P Id="21" Key="132"></P>
+<P Id="22" Key="133" Name="OIL SPILL ALRM"></P>
+<P Id="23" Key="134"></P>
+<P Id="24" Key="135" Name="SPARE"></P>
+<P Id="25" Key="136"></P>
+<P Id="26" Key="137" Name="SPARE"></P>
+<P Id="27" Key="138"></P>
+<P Id="28" Key="139" Name="SPARE"></P>
+<P Id="29" Key="140"></P>
+<P Id="30" Key="141" Name="SPARE"></P>
+<P Id="31" Key="142"></P>
+<P Id="32" Key="143" Name="SPARE"></P>
+<P Id="33" Key="144"></P>
+<P Id="34" Key="145" Name="SPARE"></P>
+<P Id="35" Key="146"></P>
+<P Id="36" Key="147" Name="SPARE"></P>
+<P Id="37" Key="148"></P>
+<P Id="38" Key="149" Name="SPARE"></P>
+<P Id="39" Key="150"></P>
+<P Id="40" Key="151" Name="SPARE"></P>
+<P Id="41" Key="152"></P>
+<P Id="42" Key="153" Name="SPARE"></P>
+<P Id="43" Key="154"></P>
+<P Id="44" Key="155" Name="SPARE"></P>
+<P Id="45" Key="156"></P>
+<P Id="46" Key="157" Name="SPARE"></P>
+<P Id="47" Key="158"></P>
+</GROUP>
+</OBJECT>
+<OBJECT Id="16384" Key="159">
+<P Id="0" Key="160"></P>
+</OBJECT>
+</DEVICE>
+</LINE>
+</PROTOCOL>
+</DIRECTION>
+</SPT>

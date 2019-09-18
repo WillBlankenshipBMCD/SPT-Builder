@@ -1,0 +1,263 @@
+<SPT Id="1">
+<DIRECTION Id="0">
+<PROTOCOL Id="1">
+<LINE Id="1">
+<Interface>0</Interface>
+<BaudRate>9600</BaudRate>
+<SwitchedRX>0</SwitchedRX>
+<SwitchedTX>0</SwitchedTX>
+<DEVICE Id="10234" Name="toEMS">
+<OBJECT Id="1">
+<P Id="0" Ref="188"></P>
+<P Id="1" Ref="189"></P>
+<P Id="2" Ref="190"></P>
+<P Id="3" Ref="191"></P>
+<P Id="4" Ref="192"></P>
+<P Id="5" Ref="193"></P>
+<P Id="6" Ref="194"></P>
+<P Id="7" Ref="195"></P>
+<P Id="8" Ref="196"></P>
+<P Id="9" Ref="197"></P>
+<P Id="10" Ref="198"></P>
+<P Id="11" Ref="199"></P>
+<P Id="12" Ref="200"></P>
+<P Id="13" Ref="201"></P>
+<P Id="14" Ref="202"></P>
+<P Id="15" Ref="203"></P>
+<P Id="16" Ref="204"></P>
+<P Id="17" Ref="205"></P>
+<P Id="18" Ref="206"></P>
+<P Id="19" Ref="207"></P>
+<P Id="20" Ref="208"></P>
+<P Id="21" Ref="209"></P>
+<P Id="22" Ref="210"></P>
+<P Id="23" Ref="211"></P>
+<P Id="24" Ref="212"></P>
+<P Id="25" Ref="213"></P>
+<P Id="26" Ref="214"></P>
+<P Id="27" Ref="215"></P>
+<P Id="28" Ref="216"></P>
+<P Id="29" Ref="217"></P>
+<P Id="30" Ref="218"></P>
+<P Id="31" Ref="219"></P>
+<P Id="32" Ref="220"></P>
+</OBJECT>
+<OBJECT Id="12">
+<P Id="0">
+<F Id="0" Ref="221"></F>
+<F Id="1" Ref="222"></F>
+</P>
+<P Id="1">
+<F Id="0" Ref="223"></F>
+<F Id="1" Ref="224"></F>
+</P>
+<P Id="2">
+<F Id="0" Ref="225"></F>
+<F Id="1" Ref="226"></F>
+</P>
+<P Id="3">
+<F Id="0" Ref="227"></F>
+<F Id="1" Ref="228"></F>
+</P>
+<P Id="4">
+<F Id="0" Ref="229"></F>
+<F Id="1" Ref="230"></F>
+</P>
+<P Id="5">
+<F Id="0" Ref="231"></F>
+<F Id="1" Ref="232"></F>
+</P>
+<P Id="6">
+<F Id="0" Ref="233"></F>
+<F Id="1" Ref="234"></F>
+</P>
+<P Id="7">
+<F Id="0" Ref="235"></F>
+<F Id="1" Ref="236"></F>
+</P>
+<P Id="8">
+<F Id="0" Ref="237"></F>
+<F Id="1" Ref="238"></F>
+</P>
+<P Id="9">
+<F Id="0" Ref="239"></F>
+<F Id="1" Ref="240"></F>
+</P>
+<P Id="10">
+<F Id="0" Ref="241"></F>
+<F Id="1" Ref="242"></F>
+</P>
+<P Id="11">
+<F Id="0" Ref="243"></F>
+<F Id="1" Ref="244"></F>
+</P>
+<P Id="12">
+<F Id="0" Ref="245"></F>
+<F Id="1" Ref="246"></F>
+</P>
+<P Id="13">
+<F Id="0" Ref="247"></F>
+<F Id="1" Ref="248"></F>
+</P>
+<P Id="14">
+<F Id="0" Ref="249"></F>
+<F Id="1" Ref="250"></F>
+</P>
+<P Id="15">
+<F Id="0" Ref="251"></F>
+<F Id="1" Ref="252"></F>
+</P>
+</OBJECT>
+<OBJECT Id="30">
+<P Id="0" Ref="253"></P>
+<P Id="1" Ref="254"></P>
+<P Id="2" Ref="255"></P>
+<P Id="3" Ref="256"></P>
+<P Id="4" Ref="257"></P>
+<P Id="5" Ref="258"></P>
+<P Id="6" Ref="259"></P>
+<P Id="7" Ref="260"></P>
+<P Id="8" Ref="261"></P>
+<P Id="9" Ref="262"></P>
+<P Id="10" Ref="263"></P>
+<P Id="11" Ref="264"></P>
+<P Id="12" Ref="265"></P>
+<P Id="13" Ref="266"></P>
+<P Id="14" Ref="267"></P>
+<P Id="15" Ref="268"></P>
+</OBJECT>
+</DEVICE>
+</LINE>
+</PROTOCOL>
+</DIRECTION>
+<DIRECTION Id="1" Key="106">
+<PROTOCOL Id="49" Key="107">
+<LINE Id="2" Key="108">
+<Interface>0</Interface>
+<BaudRate>1200</BaudRate>
+<SwitchedRX>0</SwitchedRX>
+<SwitchedTX>0</SwitchedTX>
+<DEVICE Id="3" Key="109" Name="ALPHA_TRW_9550">
+<REQUEST Id="0" Key="110">
+<Function>5</Function>
+<Variation>1</Variation>
+</REQUEST>
+<REQUEST Id="1" Key="111">
+<Function>5</Function>
+<Frequency>5000</Frequency>
+<Count>16</Count>
+<Variation>2</Variation>
+</REQUEST>
+<OBJECT Id="1" Key="112">
+<GROUP Id="0" Key="117">
+<P Id="0" Key="188" Name="24687_ACB"></P>
+<P Id="1" Key="189" Name="24688_ACB"></P>
+<P Id="2" Key="190" Name="24689_ACB"></P>
+<P Id="3" Key="191" Name="BK1_OIL_SPILL"></P>
+<P Id="4" Key="192" Name="BK_2_VCB"></P>
+<P Id="5" Key="193" Name="27690_VCB"></P>
+<P Id="6" Key="194" Name="27691_VCB"></P>
+<P Id="7" Key="195" Name="27692_VCB"></P>
+<P Id="8" Key="196" Name="BT_FUT_VCB"></P>
+<P Id="9" Key="197" Name="SPARE"></P>
+<P Id="10" Key="198" Name="SPARE"></P>
+<P Id="11" Key="199" Name="SPARE"></P>
+<P Id="12" Key="200" Name="SPARE"></P>
+<P Id="13" Key="201" Name="SPARE"></P>
+<P Id="14" Key="202" Name="SPARE"></P>
+<P Id="15" Key="203" Name="SPARE"></P>
+</GROUP>
+</OBJECT>
+<OBJECT Id="2" Key="1300">
+<GROUP Id="0" Key="1900">
+<P Id="0" Key="253" Name="SPARE"></P>
+<P Id="1" Key="254" Name="SPARE"></P>
+<P Id="2" Key="255" Name="4.8_KV"></P>
+<P Id="3" Key="256" Name="12.5_KV"></P>
+</GROUP>
+<GROUP Id="1" Key="1901">
+<P Id="0" Key="257" Name="BK_2_MW"></P>
+<P Id="1" Key="258" Name="BK_2_MVAR"></P>
+<P Id="2" Key="259" Name="27690_MW"></P>
+<P Id="3" Key="260" Name="27690_MVAR"></P>
+</GROUP>
+<GROUP Id="2" Key="1902">
+<P Id="0" Key="261" Name="27690_KV"></P>
+<P Id="1" Key="262" Name="27691_MW"></P>
+<P Id="2" Key="263" Name="27691_MVAR"></P>
+<P Id="3" Key="264" Name="27691_KV"></P>
+</GROUP>
+<GROUP Id="3" Key="1903">
+<P Id="0" Key="265" Name="27692_MW"></P>
+<P Id="1" Key="266" Name="27692_MVAR"></P>
+<P Id="2" Key="267" Name="27692_KV"></P>
+<P Id="3" Key="268" Name="SPARE"></P>
+</GROUP>
+</OBJECT>
+<OBJECT Id="4" Key="1904">
+<Type>1</Type>
+<GROUP Id="1" Key="1905">
+<P Id="0" Key="221" Name="SPARE"></P>
+<P Id="1" Key="222" Name="SPARE"></P>
+<P Id="2" Key="223" Name="ADAPTIVE_RELAYING_ON"></P>
+<P Id="3" Key="224" Name="ADAPTIVE_RELAYING_OFF"></P>
+<P Id="4" Key="225" Name="Y25_1_LBSW_CL"></P>
+<P Id="5" Key="226" Name="Y25_1_LBSW_OP"></P>
+<P Id="6" Key="227" Name="Y25_2_LBSW_CL"></P>
+<P Id="7" Key="228" Name="Y25_2_LBSW_OP"></P>
+<P Id="8" Key="229" Name="24687_ACB_CL"></P>
+<P Id="9" Key="230" Name="24687_ACB_OP"></P>
+<P Id="10" Key="231" Name="24688_ACB_CL"></P>
+<P Id="11" Key="232" Name="24688_ACB_OP"></P>
+<P Id="12" Key="233" Name="24689_ACB_CL"></P>
+<P Id="13" Key="234" Name="24689_ACB_OP"></P>
+<P Id="14" Key="235" Name="NO_6_LBSW_CL"></P>
+<P Id="15" Key="236" Name="NO_6_LBSW_OP"></P>
+</GROUP>
+<GROUP Id="2" Key="1906">
+<P Id="0" Key="237" Name="BK_2_VCB_CL"></P>
+<P Id="1" Key="238" Name="BK_2_VCB_OP"></P>
+<P Id="2" Key="239" Name="27690_VCB_CL"></P>
+<P Id="3" Key="240" Name="27690_VCB_OP"></P>
+<P Id="4" Key="241" Name="27691_VCB_CL"></P>
+<P Id="5" Key="242" Name="27691_VCB_OP"></P>
+<P Id="6" Key="243" Name="27692_VCB_CL"></P>
+<P Id="7" Key="244" Name="27692_VCB_OP"></P>
+<P Id="8" Key="245" Name="BT_FUT_VCB_CL"></P>
+<P Id="9" Key="246" Name="BT_FUT_VCB_OP"></P>
+<P Id="10" Key="247" Name="5PCT_VOLT_RED_ON"></P>
+<P Id="11" Key="248" Name="5PCT_VOLT_RED_OFF"></P>
+<P Id="12" Key="249" Name="SPARE"></P>
+<P Id="13" Key="250" Name="SPARE"></P>
+<P Id="14" Key="251" Name="SPARE"></P>
+<P Id="15" Key="252" Name="SPARE"></P>
+</GROUP>
+</OBJECT>
+<OBJECT Id="7" Key="1907">
+<GROUP Id="0" Key="1908">
+<P Id="0" Key="204" Name="LOCAL_REMOTE"></P>
+<P Id="1" Key="205" Name="BATTERY"></P>
+<P Id="2" Key="206" Name="Y25_1_LBSW"></P>
+<P Id="3" Key="207" Name="Y25_1_LBSW"></P>
+<P Id="4" Key="208" Name="Y25_2_LBSW"></P>
+<P Id="5" Key="209" Name="Y25_2_LBSW"></P>
+<P Id="6" Key="210" Name="NO_6_LBSW"></P>
+<P Id="7" Key="211" Name="NO_6_LBSW"></P>
+<P Id="8" Key="212" Name="5PCT_VOLT_RED"></P>
+<P Id="9" Key="213" Name="DX_RELAY_FAIL"></P>
+<P Id="10" Key="214" Name="BK_2_ALMS"></P>
+<P Id="11" Key="215" Name="ADAPTIVE_RELAYING"></P>
+<P Id="12" Key="216" Name="SPARE"></P>
+<P Id="13" Key="217" Name="SPARE"></P>
+<P Id="14" Key="218" Name="SPARE"></P>
+<P Id="15" Key="219" Name="SPARE"></P>
+</GROUP>
+</OBJECT>
+<OBJECT Id="16384" Key="1909">
+<P Id="0" Key="220" Name="SPT_COMM_FAIL"></P>
+</OBJECT>
+</DEVICE>
+</LINE>
+</PROTOCOL>
+</DIRECTION>
+</SPT>

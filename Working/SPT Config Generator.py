@@ -46,9 +46,6 @@ def my_function():
     global revision
 
 
-
-
-
     input1 = my_entry.get()
     stationName = str(input1)
     # [:5] limits input to only 5 character no matter how long the input is
@@ -165,11 +162,18 @@ for x in range(sheet.nrows):
     if cellValue != "":
         rows4 = rows4 + 1
 
+# for putting all the analog points in a list
+for x in range(rows4):
+    cellValue = sheet.cell_value(x,4)
+    if cellValue != "":
+        analogtags[x] = cellValue
+    else:
+        analogtags[x] = cellValue
 
 # for determing the number of non empty cell values for the binary points column 
 for x in range(sheet.nrows):
     cellValue = sheet.cell_value(x,1)
-    if cellValue != "":
+    if str(cellValue.upper()) != "UNDEFINED":
         b[x] = cellValue
 
 # assigning values to c[0...max] for control points
@@ -221,33 +225,33 @@ protocol.insert(0, line)
 interface = etree.Element("Interface")
 interface.text = "0"
 interface.tail = "\n"
-line.insert(1, interface)
+line.insert(0, interface)
 
 #start of baudrate for server side portion
 baudrate = etree.Element("BaudRate")
 # emsBaudRate collected from user in Tkinter
 baudrate.text = str(emsBaudRate)
 baudrate.tail = "\n"
-line.insert(2, baudrate)
+line.insert(1, baudrate)
 
 #start of SwitchedRx just for server side portion
 switchedRx = etree.Element("SwitchedRX")
 switchedRx.text = "0"
 switchedRx.tail = "\n"
-line.insert(3, switchedRx)
+line.insert(2, switchedRx)
 
 #start of SwitchedTx just for server side portion
 switchedTx = etree.Element("SwitchedTX")
 switchedTx.text = "0"
 switchedTx.tail = "\n"
-line.insert(4, switchedTx)
+line.insert(3, switchedTx)
 
 #start of Device
 # emsLocalAddress is collected from the user with Tkinter
 device1 = etree.Element("DEVICE", Id = str(emsLocalAddress), Name = "toEMS")
 device1.text = "\n"
 device1.tail = "\n"
-line.insert(5, device1)
+line.insert(4, device1)
 
 #start of Object 1 - Binary Inputs first ID = 1 for all binary inputs MCD and SS or NL
 object1 = etree.Element("OBJECT", Id = "1")
@@ -359,9 +363,12 @@ device1.insert(2, object3)
 
 i = 0
 
+
 # adding analog points on the server side
 for i in range(rows4):
-    if c[i] != None:
+
+    if analogtags[i] != None:
+
         P3 = etree.Element("P", Id = str(i), Ref = str(j))
         P3.text = ""
         P3.tail = "\n"
@@ -436,7 +443,7 @@ request.tail = "\n"
 device2.insert(0, request)
 
 # the next four have to do specifically with settings for S9000
-#start of function
+# start of function
 function = etree.Element("Function")
 function.text = "5"
 function.tail = "\n"
@@ -517,20 +524,15 @@ device2.insert(2, object5)
 objGroupNums+=1
 
 
-# for putting all the analog points in a list
-for x in range(rows4):
-    cellValue = sheet.cell_value(x,4)
-    if cellValue != "":
-        analogtags[x] = cellValue
-    else:
-        analogtags[x] = cellValue
+
 
 i = 0
 k = 0
 h = 0
 j = 0
-#loops for creating the client side analog points besed on their name and frame #
+#loops for creating the client side analog points based on their name and frame #
 #creating each frame or "GROUP"
+
 for i in range(rows4/4):
 
     analogGroups = etree.Element("GROUP", Id = str(i), Key = str(objGroupNums))
