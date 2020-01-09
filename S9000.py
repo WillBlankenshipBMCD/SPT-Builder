@@ -1,5 +1,6 @@
 from lxml import etree
 from Tkinter import *
+import pprint
 
 import xlrd
 file_loc = ("C:\Users\wblankenship\Documents\GitHub\SPT-Builder\SPT Config Generator.xlsx")
@@ -7,7 +8,9 @@ wb = xlrd.open_workbook(file_loc)
 sheet = wb.sheet_by_name("Sheet1")
 rows = sheet.nrows
 
-def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, emsLocalAddress, rtuRemoteAddress):
+pp = pprint.PrettyPrinter()
+
+def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, emsLocalAddress, rtuRemoteAddress, EnableUmode, port):
 
     mcdPoints = [None] * rows
     ssPoints = [None] * rows
@@ -20,50 +23,77 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
     analogNums = [None] * rows
     controlNums = [None] * rows
 
+
+
     # sorting and filling in the MCD Binary points
     for i in range(3, sheet.nrows):
-        point = {"frame": sheet.cell_value(i,1),"index": sheet.cell_value(i,2),"description": str(sheet.cell_value(i,3)).strip().replace(" ", "_")
+        point = {"frame": sheet.cell_value(i,1),"index": str(sheet.cell_value(i,2)).replace(".0", ""),"description": str(sheet.cell_value(i,3)).strip().replace(" ", "_")
                                .replace("\\", "_").replace("/", "_").replace("-", "_")
                                .replace("&", "").replace("<", "").replace(">", "")
-                               .replace('"', "").upper()}
+                               .replace('"', "").replace('._', "_").replace('_.', "_").replace('__', "_").replace('___', "_").upper()}
+
+        if (point.get('index') == "" or point.get('frame') == ""):
+            break
 
         mcdPoints[i-3] = point
+
+
+
     # removing none values from the mcdPoints list
     mcdPoints = [i for i in mcdPoints if i]
-    mcdPoints = sorted(mcdPoints, key = lambda i: (i['frame'],i['index']))
+    mcdPoints = sorted(mcdPoints, key = lambda i: (int(i['frame']),int(i['index'])))
     mcdPoints = [i for i in mcdPoints if i['description'] != ""]
+    # for determining how many status frames there are for xcount
+    if (mcdPoints.__len__() == 0):
+        numStatusFrames = 0
+    else:
+        numStatusFrames = int(mcdPoints[mcdPoints.__len__() - 1].get('frame')) + 1
 
 
     # sorting and filling in the SS Binary points
     for i in range(3, sheet.nrows):
-        point = {"frame": sheet.cell_value(i, 5), "index": sheet.cell_value(i, 6),
-                 "description": str(sheet.cell_value(i, 7)).strip().replace(" ", "_")
+        point = {"frame": str(sheet.cell_value(i, 5)).replace(".0", ""), "index": str(sheet.cell_value(i, 6)).replace(".0", ""),
+                 "description": str(sheet.cell_value(i, 7)).strip().replace(' "', "").replace('" ', "").replace(" ", "_")
                      .replace("\\", "_").replace("/", "_").replace("-", "_")
                      .replace("&", "").replace("<", "").replace(">", "")
-                     .replace('"', "").upper()}
+                     .replace('._', "_").replace('_.', "_").replace('__', "_").replace('___', "_").upper()}
+        if (point.get('index') == "" or point.get('frame') == ""):
+            break
 
         ssPoints[i - 3] = point
         # removing none values from the mcdPoints list
     ssPoints = [i for i in ssPoints if i]
-    ssPoints = sorted(ssPoints, key=lambda i: (i['frame'], i['index']))
+    ssPoints = sorted(ssPoints, key=lambda i: (int(i['frame']),int(i['index'])))
     ssPoints = [i for i in ssPoints if i['description'] != ""]
+    try:
+        if(int(mcdPoints[mcdPoints.__len__() - 1].get('frame')) < int(ssPoints[ssPoints.__len__() - 1].get('frame'))):
+            # for the rare occurrance that there is no MCD or SS points
+            if (ssPoints.__len__() == 0):
+                numStatusFrames = 0
+            else:
+                numStatusFrames = int(ssPoints[ssPoints.__len__() - 1].get('frame')) + 1
+    except IndexError:
+        print("")
 
     # sorting and filling in the Control points
     for i in range(3, sheet.nrows):
-        if sheet.cell_value(i, 10) == "":
-            index = sheet.cell_value(i-1, 10)
+        if sheet.cell_value(i, 11) == "":
+            index = str(sheet.cell_value(i-1, 10)).replace(".0", "")
         else:
-            index = sheet.cell_value(i, 10)
-        point = {"group": sheet.cell_value(i, 9), "index": index, "description": str(sheet.cell_value(i, 11)).strip().replace(" ", "_")
+            index = str(sheet.cell_value(i, 10)).replace(".0", "")
+        point = {"group": sheet.cell_value(i, 10), "index": index, "description": str(sheet.cell_value(i, 11)).strip().replace(" ", "_")
                      .replace("\\", "_").replace("/", "_").replace("-", "_")
                      .replace("&", "").replace("<", "").replace(">", "")
-                     .replace('"', "").upper(), "function": sheet.cell_value(i, 12)}
-
+                     .replace('"', "").replace('._', "_").replace('_.', "_").replace('__', "_").replace('___', "_").upper(), "function": sheet.cell_value(i, 12)}
+        if (point.get('group') == "" or point.get('index') == "" ):
+            break
         controlPoints[i - 3] = point
-        # removing none values from the mcdPoints list
+
+        # removing none values from the controlPoints list
     controlPoints = [i for i in controlPoints if i]
-    controlPoints = sorted(controlPoints, key=lambda i: (i['group'], i['index']))
+    controlPoints = sorted(controlPoints, key=lambda i: (int(i['group']), int(i['index'])))
     numDelete = 0
+
     for i in range(controlPoints.__len__()):
         if controlPoints[i].get('description') == "":
             numDelete += 1
@@ -72,51 +102,35 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
     if numDelete != 0:
         controlPoints = controlPoints[:-numDelete]
 
-        # sorting and filling in the Control points
-        for i in range(3, sheet.nrows):
-            point = {"group": sheet.cell_value(i, 9), "index": sheet.cell_value(i, 10),
-                     "description": str(sheet.cell_value(i, 11)).strip().replace(" ", "_")
-                         .replace("\\", "_").replace("/", "_").replace("-", "_")
-                         .replace("&", "").replace("<", "").replace(">", "")
-                         .replace('"', "").upper(), "function": sheet.cell_value(i, 12)}
+    # for i in range(controlPoints.__len__()):
+    #     print(controlPoints[i].get('description'))
+    #     raw_input()
 
-            if point.get('group') == "" and point.get('index') == "" and point.get('description') == "":
-                break;
-
-
-            controlPoints[i - 3] = point
-
-            # removing none values from the mcdPoints list
-        controlPoints = [i for i in controlPoints if i]
-        controlPoints = sorted(controlPoints, key=lambda i: (i['group'], i['index']))
-        numDelete = 0
-        for i in range(controlPoints.__len__()):
-            if controlPoints[i].get('description') == "":
-                numDelete += 1
-
-        # if numDelete = 0, it will delete all the points in the list. It's just what [:0] does for some reason. This was a special case
-        if numDelete != 0:
-            controlPoints = controlPoints[:-numDelete]
-
-    # sorting and filling in the Analog points
+    # filling in the Analog points
     for i in range(3, sheet.nrows):
-        point = {"frame": sheet.cell_value(i, 14), "index": sheet.cell_value(i, 15),
+        point = {"frame": str(sheet.cell_value(i, 14)).replace(".0", ""), "index": str(sheet.cell_value(i, 15)).replace(".0", ""),
                  "description": str(sheet.cell_value(i, 16)).strip().replace(" ", "_")
                      .replace("\\", "_").replace("/", "_").replace("-", "_")
                      .replace("&", "").replace("<", "").replace(">", "")
-                     .replace('"', "").upper()}
+                     .replace('"', "").replace('._', "_").replace('_.', "_").replace('__', "_").replace('___', "_").upper()}
 
         analogPoints[i - 3] = point
         # removing none values from the mcdPoints list
+
+
     analogPoints = [i for i in analogPoints if i]
-    analogPoints = sorted(analogPoints, key=lambda i: (i['frame'], i['index']))
+    analogPoints = sorted(analogPoints, key=lambda i: (['frame'], ['index']))
     numDelete = 0
     for i in range(analogPoints.__len__()):
         if analogPoints[i].get('description') == "":
             numDelete += 1
 
     analogPoints = analogPoints[:-numDelete]
-
+    # for determining how many status frames there are for xcount
+    if (analogPoints.__len__() == 0):
+        numAnalogFrames = 0
+    else:
+        numAnalogFrames = int(analogPoints[analogPoints.__len__() - 1].get('frame')) + 1
     # root of the document
     root = etree.Element("SPT", Id="1")
     root.text = "\n"
@@ -135,11 +149,26 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
     protocol.tail = "\n"
     direction.insert(0, protocol)
 
+    # For enable u mode.
+    if EnableUmode == "Yes":
+        # start of Primary Adresss for Umode. This is the address to EMS.
+        PrimaryAddress = etree.Element("PrimaryAddress")
+        PrimaryAddress.text = "10"
+        PrimaryAddress.tail = "\n"
+        protocol.insert(0, PrimaryAddress)
+
+        # start of Startup for Umode. This is the actual setting that enables U mode
+        Startup = etree.Element("Startup")
+        Startup.text = "1"
+        Startup.tail = "\n"
+        protocol.insert(1, Startup)
+
+
     # start of line1 for server side portion
     line = etree.Element("LINE", Id="1")
     line.text = "\n"
     line.tail = "\n"
-    protocol.insert(0, line)
+    protocol.insert(2, line)
 
     # start of interface for server side portion
     interface = etree.Element("Interface")
@@ -184,39 +213,73 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
     j = 118
     id = 0
 
-    for i in range(mcdPoints.__len__()):
-        if mcdPoints[i].get('description') != "UNDEFINED":
-            P = etree.Element("P", Id=str(i), Ref=str(j))
-            P.text = ""
-            P.tail = "\n"
-            object1.insert(i, P)
-            mcdBinaryNums[i] = j
-        else:
-            P = etree.Element("P", Id=str(i))
-            P.text = ""
-            P.tail = "\n"
-            object1.insert(i, P)
-            mcdBinaryNums[i] = j
-        j += 1
-        id +=1
+    if str(sheet.cell_value(3,2)).replace(".0", "") == "0":
+
+        for i in range(mcdPoints.__len__()):
+            if mcdPoints[i].get('description') != "UNDEFINED":
+                P = etree.Element("P", Id=str(id), Ref=str(j))
+                P.text = ""
+                P.tail = "\n"
+                object1.insert(j, P)
+                mcdBinaryNums[i] = j
+            else:
+                P = etree.Element("P", Id=str(id))
+                P.text = ""
+                P.tail = "\n"
+                object1.insert(j, P)
+                mcdBinaryNums[i] = j
+            j += 1
+            id +=1
 
 
-    for i in range(ssPoints.__len__()):
-        if ssPoints[i].get('description').upper() != "UNDEFINED":
-            P = etree.Element("P", Id=str(id), Ref=str(j))
-            P.text = ""
-            P.tail = "\n"
-            object1.insert(j, P)
-            ssBinaryNums[i] = j
-        else:
-            P = etree.Element("P", Id=str(id))
-            P.text = ""
-            P.tail = "\n"
-            object1.insert(j, P)
-            ssBinaryNums[i] = j
-        j += 1
-        id += 1
+        for i in range(ssPoints.__len__()):
+            if ssPoints[i].get('description').upper() != "UNDEFINED":
+                P = etree.Element("P", Id=str(id), Ref=str(j))
+                P.text = ""
+                P.tail = "\n"
+                object1.insert(j, P)
+                ssBinaryNums[i] = j
+            else:
+                P = etree.Element("P", Id=str(id))
+                P.text = ""
+                P.tail = "\n"
+                object1.insert(j, P)
+                ssBinaryNums[i] = j
+            j += 1
+            id += 1
+    else:
 
+        for i in range(ssPoints.__len__()):
+            if ssPoints[i].get('description').upper() != "UNDEFINED":
+                P = etree.Element("P", Id=str(id), Ref=str(j))
+                P.text = ""
+                P.tail = "\n"
+                object1.insert(j, P)
+                ssBinaryNums[i] = j
+            else:
+                P = etree.Element("P", Id=str(id))
+                P.text = ""
+                P.tail = "\n"
+                object1.insert(j, P)
+                ssBinaryNums[i] = j
+            j += 1
+            id += 1
+
+        for i in range(mcdPoints.__len__()):
+            if mcdPoints[i].get('description') != "UNDEFINED":
+                P = etree.Element("P", Id=str(id), Ref=str(j))
+                P.text = ""
+                P.tail = "\n"
+                object1.insert(j, P)
+                mcdBinaryNums[i] = j
+            else:
+                P = etree.Element("P", Id=str(id))
+                P.text = ""
+                P.tail = "\n"
+                object1.insert(j, P)
+                mcdBinaryNums[i] = j
+            j += 1
+            id += 1
 
 
     # start of Object 2 - for Control Points ID = 12
@@ -228,6 +291,7 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
     id = 0
     h = 0
     for i in range(controlPoints.__len__()/2):
+
         # i * 2 to account for there being 2 of each point
         if controlPoints[i*2].get('description').upper() == "UNDEFINED":
 
@@ -313,8 +377,9 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
     protocol2.tail = "\n"
     direction2.insert(0, protocol2)
 
-    # start of line2 for server side portion
-    line2 = etree.Element("LINE", Id="2", Key="113")
+    # start of line2 for server side portion. For ID=port, port is directly reflective of the the port the RTU is connected to.
+    # The name "line2" has no reference to the port. It's just the name of a variable.
+    line2 = etree.Element("LINE", Id=port, Key="113")
     line2.text = "\n"
     line2.tail = "\n"
     protocol2.insert(0, line2)
@@ -331,23 +396,38 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
     baudrate2.tail = "\n"
     line2.insert(2, baudrate2)
 
-    # start of InvertRX and InvertTX  for server side portion
+    # added to every config, pre transmission delay is not added because default is already 20
+    PostTransDelay = etree.Element("PostTransmissionDelay")
+    PostTransDelay.text = "1"
+    PostTransDelay.tail = "\n"
+    line2.insert(3, PostTransDelay)
+
+    # start of SwitchedRX and SwitchedTX  for server side portion
     if rxTxUserInput == "YES":
-        invertRX = etree.Element("InvertRX")
-        invertRX.text = "1"
-        invertRX.tail = "\n"
-        line2.insert(3, invertRX)
-        invertTX = etree.Element("InvertTX")
-        invertTX.text = "1"
-        invertTX.tail = "\n"
-        line2.insert(4, invertTX)
+        SwitchedRX = etree.Element("SwitchedRX")
+        SwitchedRX.text = "1"
+        SwitchedRX.tail = "\n"
+        line2.insert(4, SwitchedRX)
+        SwitchedTX = etree.Element("SwitchedTX")
+        SwitchedTX.text = "1"
+        SwitchedTX.tail = "\n"
+        line2.insert(5, SwitchedTX)
+    else:
+        SwitchedRX = etree.Element("SwitchedRX")
+        SwitchedRX.text = "0"
+        SwitchedRX.tail = "\n"
+        line2.insert(4, SwitchedRX)
+        SwitchedTX = etree.Element("SwitchedTX")
+        SwitchedTX.text = "0"
+        SwitchedTX.tail = "\n"
+        line2.insert(5, SwitchedTX)
 
     # where data needs to be collected from the user, i.e. Address for RTU, and Name
     # start of Device
-    device2 = etree.Element("DEVICE", Id=str(rtuRemoteAddress), Key="114", Name=str(stationName) + "_TRWS9")
+    device2 = etree.Element("DEVICE", Id=str(rtuRemoteAddress), Key="114", Name=str(stationName).replace(" ","_") + "_TRWS9")
     device2.text = "\n"
     device2.tail = "\n"
-    line2.insert(5, device2)
+    line2.insert(6, device2)
 
     # start of request
     request = etree.Element("REQUEST", Id="0", Key="115")
@@ -370,13 +450,13 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
 
     # start of XCount
     xcount = etree.Element("XCount")
-    xcount.text = "1"
+    xcount.text = str(numStatusFrames)
     xcount.tail = "\n"
     request.insert(2, xcount)
 
     # start of YCount
     ycount = etree.Element("YCount")
-    ycount.text = "3"
+    ycount.text = str(numAnalogFrames)
     ycount.tail = "\n"
     request.insert(3, ycount)
 
@@ -385,6 +465,8 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
     object4.text = "\n"
     object4.tail = "\n"
     device2.insert(1, object4)
+
+    mcdID = 0
 
 
     if mcdPoints.__len__() > 28:
@@ -396,39 +478,51 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
         object4.insert(0, group1)
 
         for i in range(28):
+            if mcdPoints[i].get("description") == "SPT_COMM_FAIL":
+                print("")
+                mcdID += 1
             if mcdPoints[i].get('description').upper() != "UNDEFINED":
-                P = etree.Element("P", Id=str(i), Key = str(mcdBinaryNums[i]), Name=mcdPoints[i].get('description').strip().replace(" ", "_")
+                P = etree.Element("P", Id=str(mcdID), Key = str(mcdBinaryNums[i]), Name=mcdPoints[i].get('description').strip().replace(" ", "_")
                      .replace("\\", "_").replace("/", "_").replace("-", "_")
                      .replace("&", "").replace("<", "").replace(">", "")
                      .replace('"', "").upper())
                 P.text = ""
                 P.tail = "\n"
                 group1.insert(i, P)
+                mcdID +=1
             else:
                 P = etree.Element("P", Id=str(i))
                 P.text = ""
                 P.tail = "\n"
                 group1.insert(i, P)
+                mcdID += 1
 
-        group2 = etree.Element("GROUP", Id="1", Key="1200")
-        group2.text = "\n"
-        group2.tail = "\n"
-        object4.insert(1, group2)
-        for i in range(28, mcdPoints.__len__()):
-
-            if mcdPoints[i].get('description').upper() != "UNDEFINED":
-                P = etree.Element("P", Id=str(i), Key = str(mcdBinaryNums[i]), Name=mcdPoints[i].get('description').strip().replace(" ", "_")
-                     .replace("\\", "_").replace("/", "_").replace("-", "_")
-                     .replace("&", "").replace("<", "").replace(">", "")
-                     .replace('"', "").upper())
-                P.text = ""
-                P.tail = "\n"
-                group2.insert(i, P)
-            else:
-                P = etree.Element("P", Id=str(i))
-                P.text = ""
-                P.tail = "\n"
-                object2.insert(i, P)
+        if mcdPoints[28].get("description") == "SPT_COMM_FAIL":
+            print("")
+        else:
+            group2 = etree.Element("GROUP", Id="1", Key="1200")
+            group2.text = "\n"
+            group2.tail = "\n"
+            object4.insert(1, group2)
+            for i in range(28, mcdPoints.__len__()):
+                if mcdPoints[i].get("description") == "SPT_COMM_FAIL":
+                    print("")
+                    mcdID += 1
+                elif mcdPoints[i].get('description').upper() != "UNDEFINED":
+                    P = etree.Element("P", Id=str(mcdID), Key = str(mcdBinaryNums[i]), Name=mcdPoints[i].get('description').strip().replace(" ", "_")
+                         .replace("\\", "_").replace("/", "_").replace("-", "_")
+                         .replace("&", "").replace("<", "").replace(">", "")
+                         .replace('"', "").upper())
+                    P.text = ""
+                    P.tail = "\n"
+                    group2.insert(i, P)
+                    mcdID += 1
+                else:
+                    P = etree.Element("P", Id=str(i))
+                    P.text = ""
+                    P.tail = "\n"
+                    object2.insert(i, P)
+                mcdID += 1
 
     else:
 
@@ -439,20 +533,25 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
         object4.insert(0, group1)
 
         for i in range(mcdPoints.__len__()):
-            if mcdPoints[i].get('description').upper() != "UNDEFINED":
+            if mcdPoints[i].get("description") == "SPT_COMM_FAIL":
+                print("")
+                mcdID += 1
+            elif mcdPoints[i].get('description').upper() != "UNDEFINED":
 
-                P = etree.Element("P", Id=str(i), Key = str(mcdBinaryNums[i]), Name=mcdPoints[i].get('description').strip().replace(" ", "_")
+                P = etree.Element("P", Id=str(mcdID), Key = str(mcdBinaryNums[i]), Name=mcdPoints[i].get('description').strip().replace(" ", "_")
                      .replace("\\", "_").replace("/", "_").replace("-", "_")
                      .replace("&", "").replace("<", "").replace(">", "")
                      .replace('"', "").upper())
                 P.text = ""
                 P.tail = "\n"
                 group1.insert(i, P)
+                mcdID += 1
             else:
-                P = etree.Element("P", Id=str(i))
+                P = etree.Element("P", Id=str(mcdID))
                 P.text = ""
                 P.tail = "\n"
                 group1.insert(i, P)
+                mcdID += 1
 
     # start of Object 5 - Analog Inputs ID = 2 for all binary inputs MCD and SS or NL
     object5 = etree.Element("OBJECT", Id="2", Key="1300")
@@ -461,7 +560,6 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
     device2.insert(2, object5)
 
     objGroupNums = 1900
-    k = 0
     h = 0
     j = 0
     # loops for creating the client side analog points based on their name and frame #
@@ -476,17 +574,16 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
         objGroupNums += 1
 
         for h in range(4):
-            if analogPoints[k].get("description") == "UNDEFINED":
+            if analogPoints[j].get("description") == "UNDEFINED":
                 P = etree.Element("P", Id=str(h))
                 P.text = ""
                 P.tail = "\n"
                 analogGroups.insert(h, P)
             else:
-                P = etree.Element("P", Id=str(h), Key=str(analogNums[j]), Name= str(analogPoints[k].get("description")))
+                P = etree.Element("P", Id=str(h), Key=str(analogNums[j]), Name= str(analogPoints[j].get("description")))
                 P.text = ""
                 P.tail = "\n"
                 analogGroups.insert(h, P)
-            k += 1
             j += 1
 
     # start of Object 6 - Control Inputs ID = 4 for all Control inputs MCD and SS or NL
@@ -525,7 +622,12 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
                 P.text = ""
                 P.tail = "\n"
                 controlGroups.insert(h, P)
-            elif controlPoints[k].get("description") != "":
+            elif controlPoints[k].get("description") != "" and controlPoints[k].get("function") == "":
+                P = etree.Element("P", Id=str(h), Key=str(controlNums[j]), Name=controlPoints[k].get("description"))
+                P.text = ""
+                P.tail = "\n"
+                controlGroups.insert(h, P)
+            elif controlPoints[k].get("description") != "" and controlPoints[k].get("function") != "":
                 P = etree.Element("P", Id=str(h), Key=str(controlNums[j]), Name=controlPoints[k].get("description") + "_" + str(sheet.cell_value(a, 12)).strip().replace(" ", "_")
                      .replace("\\", "_").replace("/", "_").replace("-", "_")
                      .replace("&", "").replace("<", "").replace(">", "")
@@ -549,73 +651,65 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
     object7.tail = "\n"
     device2.insert(4, object7)
     objGroupNums += 1
+    try:
+        ssID = int(ssPoints[0].get('index'))
+    except IndexError:
+        print("")
 
-    if ssPoints.__len__() > 55:
+    #add back in if the there needs to be a conditional for going over 55
+    #if ssPoints.__len__() > 55:
 
-        # start of Object 4 - Binary Inputs first ID = 1 for MCD on the Client side
-        group1 = etree.Element("GROUP", Id="0", Key=str(objGroupNums))
-        group1.text = "\n"
-        group1.tail = "\n"
-        object7.insert(0, group1)
-        objGroupNums += 1
+    # start of Object 4 - Binary Inputs first ID = 1 for MCD on the Client side
+    group1 = etree.Element("GROUP", Id="0", Key=str(objGroupNums))
+    group1.text = "\n"
+    group1.tail = "\n"
+    object7.insert(0, group1)
+    objGroupNums += 1
 
-        for i in range(55):
+    for i in range(ssPoints.__len__()):
+        if ssPoints[i].get("description") == "SPT_COMM_FAIL":
+            print("")
+            ssID += 1
+        else:
             if ssPoints[i].get('description').upper() != "UNDEFINED":
-                P = etree.Element("P", Id=str(i), Key=str(ssBinaryNums[i]), Name=ssPoints[i].get('description'))
+                P = etree.Element("P", Id=str(ssID), Key=str(ssBinaryNums[i]), Name=ssPoints[i].get('description'))
                 P.text = ""
                 P.tail = "\n"
                 group1.insert(i, P)
+                ssID+=1
             else:
-                P = etree.Element("P", Id=str(i))
+                P = etree.Element("P", Id=str(ssID))
                 P.text = ""
                 P.tail = "\n"
                 group1.insert(i, P)
+                ssID+=1
 
-        group2 = etree.Element("GROUP", Id="1", Key=str(objGroupNums))
-        group2.text = "\n"
-        group2.tail = "\n"
-        object4.insert(1, group2)
-        objGroupNums += 1
+        # add in if another group needs to be created for when the simple status points go over 55 points
+        # group2 = etree.Element("GROUP", Id="1", Key=str(objGroupNums))
+        # group2.text = "\n"
+        # group2.tail = "\n"
+        # object7.insert(1, group2)
+        # objGroupNums += 1
+        #
+        # for i in range(55, ssPoints.__len__()):
+        #
+        #     if ssPoints[i].get('description').upper() != "UNDEFINED":
+        #         if ssPoints[i].get("description") == "SPT_COMM_FAIL":
+        #             print("")
+        #             ssID += 1
+        #         else:
+        #             P = etree.Element("P", Id=str(ssID), Key=str(ssBinaryNums[i]), Name=ssPoints[i].get('description'))
+        #             P.text = ""
+        #             P.tail = "\n"
+        #             group2.insert(i, P)
+        #             ssID += 1
+        #     else:
+        #         P = etree.Element("P", Id=str(ssID))
+        #         P.text = ""
+        #         P.tail = "\n"
+        #         group2.insert(i, P)
+        #         ssID += 1
 
-        for i in range(28, ssPoints.__len__()):
-
-            if ssPoints[i].get('description').upper() != "UNDEFINED":
-                if ssPoints[i].get("description") == "SPT_COMM_FAIL":
-                    print("")
-                else:
-                    P = etree.Element("P", Id=str(i), Key=str(ssBinaryNums[i]), Name=ssPoints[i].get('description'))
-                    P.text = ""
-                    P.tail = "\n"
-                    group2.insert(i, P)
-            else:
-                P = etree.Element("P", Id=str(i))
-                P.text = ""
-                P.tail = "\n"
-                group2.insert(i, P)
-
-    else:
-
-        # start of Object 4 - Binary Inputs first ID = 1 for MCD on the Client side
-        group1 = etree.Element("GROUP", Id="0", Key=str(objGroupNums))
-        group1.text = "\n"
-        group1.tail = "\n"
-        object7.insert(0, group1)
-        objGroupNums += 1
-
-        for i in range(ssPoints.__len__()):
-            if ssPoints[i].get('description') != "UNDEFINED" :
-                if ssPoints[i].get("description") == "SPT_COMM_FAIL":
-                    print("")
-                else:
-                    P = etree.Element("P", Id=str(i), Key=str(ssBinaryNums[i]), Name=ssPoints[i].get('description'))
-                    P.text = ""
-                    P.tail = "\n"
-                    group1.insert(i, P)
-            else:
-                P = etree.Element("P", Id=str(i), Key=str(ssBinaryNums[i]))
-                P.text = ""
-                P.tail = "\n"
-                group1.insert(i, P)
 
     # start of Object 8 - Binary Inputs ID = 4 for all Control inputs MCD and SS or NL
     object8 = etree.Element("OBJECT", Id="16384", Key=str(objGroupNums))
@@ -630,10 +724,18 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
             P8.tail = "\n"
             object8.insert(0, P8)
 
+    for i in range(mcdPoints.__len__()):
+        if mcdPoints[i].get("description") == "SPT_COMM_FAIL":
+            P8 = etree.Element("P", Id="0", Key=str(mcdBinaryNums[i]), Name= mcdPoints[i].get("description"))
+            P8.text = ""
+            P8.tail = "\n"
+            object8.insert(0, P8)
+
 
     tree = etree.ElementTree(root)
     tree.write(str(stationName) + " ASE SPT Alert 9000 DNP Rev " + str(revision) + ".xml")
     # add for addtional info - - - > ,xml_declaration=True,   encoding="utf-8")
 
+# The program is acutally running twice with this.
 # arguments are rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, emsLocalAddress, rtuRemoteAddress
-s9000Gen("NO", "Millhurst", "A", "9600", "1200", "10234", "3")
+# s9000Gen("NO", "Millhurst", "A", "9600", "1200", "10234", "3", "No", "2")

@@ -1,0 +1,162 @@
+<SPT Id="1">
+<DIRECTION Id="0">
+<PROTOCOL Id="1">
+<LINE Id="1">
+<Interface>0</Interface>
+<BaudRate>9600</BaudRate>
+<SwitchedRX>0</SwitchedRX>
+<DEVICE Id="10258" Name="toEMS">
+<OBJECT Id="1">
+<P Id="0" Ref="72"></P>
+<P Id="1" Ref="73"></P>
+<P Id="2" Ref="74"></P>
+<P Id="3" Ref="75"></P>
+<P Id="4" Ref="76"></P>
+<P Id="5" Ref="77"></P>
+<P Id="6" Ref="78"></P>
+<P Id="7" Ref="79"></P>
+<P Id="8" Ref="80"></P>
+<P Id="9" Ref="81"></P>
+<P Id="10" Ref="82"></P>
+<P Id="11" Ref="83"></P>
+<P Id="12" Ref="84"></P>
+<P Id="13" Ref="85"></P>
+<P Id="14" Ref="86"></P>
+<P Id="15" Ref="87"></P>
+<P Id="16" Ref="62"></P>
+<P Id="17" Ref="63"></P>
+<P Id="18" Ref="64"></P>
+<P Id="19" Ref="65"></P>
+<P Id="20" Ref="66"></P>
+<P Id="21" Ref="67"></P>
+<P Id="22" Ref="68"></P>
+<P Id="23" Ref="69"></P>
+<P Id="24" Ref="700"></P>
+</OBJECT>
+<OBJECT Id="12">
+<P Id="0">
+<F Id="0" Ref="97"></F>
+<F Id="1" Ref="98"></F>
+</P>
+<P Id="1">
+<F Id="0" Ref="100"></F>
+<F Id="1" Ref="101"></F>
+</P>
+<P Id="2">
+<F Id="0" Ref="103"></F>
+<F Id="1" Ref="104"></F>
+</P>
+<P Id="3">
+<F Id="0" Ref="106"></F>
+<F Id="1" Ref="107"></F>
+</P>
+<P Id="4">
+<F Id="0" Ref="109"></F>
+<F Id="1" Ref="110"></F>
+</P>
+</OBJECT>
+<OBJECT Id="30">
+<P Id="0" Ref="89"></P>
+<P Id="1" Ref="90"></P>
+<P Id="2" Ref="91"></P>
+<P Id="3" Ref="92"></P>
+<P Id="4" Ref="93"></P>
+<P Id="5" Ref="94"></P>
+</OBJECT>
+</DEVICE>
+</LINE>
+</PROTOCOL>
+</DIRECTION>
+<DIRECTION Id="1" Key="55">
+<PROTOCOL Id="6" Key="56">
+<LINE Id="3" Key="57">
+<Interface>0</Interface>
+<BaudRate>1200</BaudRate>
+
+<PostTransmissionDelay>1</PostTransmissionDelay>
+<DEVICE Id="4" Key="58" Name="Matawan_CDC2_44-550">
+<REQUEST Id="0" Key="59">
+<Function>3</Function>
+</REQUEST>
+<OBJECT Id="1" Key="60">
+<P Id="0" Key="61">
+<F Id="0" Key="62" Name="43175_OCB"></F>
+<F Id="1" Key="63" Name="43176_OCB"></F>
+<F Id="2" Key="64" Name="43484_OCB"></F>
+<F Id="3" Key="65" Name="SPARE"></F>
+<F Id="4" Key="66" Name="SPARE"></F>
+<F Id="5" Key="67" Name="SPARE"></F>
+<F Id="6" Key="68" Name="SPARE"></F>
+<F Id="7" Key="69" Name="SPARE"></F>
+</P>
+</OBJECT>
+<OBJECT Id="3" Key="2000">
+<P Id="48" Key="71">
+<F Id="0" Key="72" Name="LOCAL_REMOTE"></F>
+<F Id="1" Key="73" Name="BATTERY"></F>
+<F Id="2" Key="74" Name="BK_1_2_OIL_SPL"></F>
+<F Id="3" Key="75" Name="Z104_1_LBSW"></F>
+<F Id="4" Key="76" Name="Z104_1_LBSW"></F>
+<F Id="5" Key="77" Name="Z104_2_LBSW"></F>
+<F Id="6" Key="78" Name="Z104_2_LBSW"></F>
+<F Id="7" Key="79" Name="TRIPPING_DC"></F>
+<F Id="8" Key="80" Name="SPARE"></F>
+<F Id="9" Key="81" Name="SPARE"></F>
+<F Id="10" Key="82" Name="SPARE"></F>
+<F Id="11" Key="83" Name="SPARE"></F>
+<F Id="12" Key="84" Name="SPARE"></F>
+<F Id="13" Key="85" Name="SPARE"></F>
+<F Id="14" Key="86" Name="SPARE"></F>
+<F Id="15" Key="87" Name="SPARE"></F>
+</P>
+</OBJECT>
+<OBJECT Id="6" Key="2001">
+<P Id="128" Key="89" Name="SPARE"></P>
+<P Id="129" Key="90" Name="SPARE"></P>
+<P Id="130" Key="91" Name="43484_MW"></P>
+<P Id="131" Key="92" Name="43484_MVAR"></P>
+<P Id="132" Key="93" Name="43175_MW"></P>
+<P Id="133" Key="94" Name="43175_MVAR"></P>
+</OBJECT>
+<OBJECT Id="9" Key="2002">
+<P Id="0" Key="96" Name="Z104-1 LBSW">
+<F Id="0" Key="97"></F>
+<F Id="1" Key="98"></F>
+</P>
+<P Id="1" Key="99" Name="Z104-2 LBSW">
+<F Id="0" Key="100"></F>
+<F Id="1" Key="101"></F>
+</P>
+<P Id="2" Key="102" Name="43175_OCB">
+<F Id="0" Key="103"></F>
+<F Id="1" Key="104"></F>
+</P>
+<P Id="3" Key="105" Name="43176_OCB">
+<F Id="0" Key="106"></F>
+<F Id="1" Key="107"></F>
+</P>
+<P Id="4" Key="108" Name="43484_OCB">
+<F Id="0" Key="109"></F>
+<F Id="1" Key="110"></F>
+</P>
+<P Id="5" Key="111">
+<F Id="0" Key="112"></F>
+<F Id="1" Key="113"></F>
+</P>
+<P Id="6" Key="114">
+<F Id="0" Key="115"></F>
+<F Id="1" Key="116"></F>
+</P>
+<P Id="7" Key="117">
+<F Id="0" Key="118"></F>
+<F Id="1" Key="119"></F>
+</P>
+</OBJECT>
+<OBJECT Id="16384" Key="2003">
+<P Id="0" Key="700" Name="COMM_FAILURE"></P>
+</OBJECT>
+</DEVICE>
+</LINE>
+</PROTOCOL>
+</DIRECTION>
+</SPT>

@@ -3,6 +3,7 @@ import xlrd
 from Tkinter import *
 from S9000 import s9000Gen
 from TRW9550 import trw9550Gen
+from CDC44550 import cdc44550Gen
 
 file_loc = ("C:\Users\wblankenship\Documents\GitHub\SPT-Builder\Working\Hornerstown S9000.xlsx")
 wb = xlrd.open_workbook(file_loc)
@@ -12,7 +13,6 @@ rows = sheet.nrows
 # ***************************************************************************************Taking user input with Tkinter
 if __name__ == '__main__':
     root = Tk()
-
     variable = StringVar(root)
     variable.set("Yes") # default value
     variable2 = StringVar(root)
@@ -21,6 +21,12 @@ if __name__ == '__main__':
     variable3.set(9600)
     variable4 = StringVar(root)
     variable4.set("TRW S9000")
+    variable5 = StringVar(root)
+    variable5.set("No")
+    variable6 = StringVar(root)
+    variable6.set("2")
+    variable7 = StringVar(root)
+    variable7.set("8890")
 
     def my_function():
 
@@ -32,6 +38,10 @@ if __name__ == '__main__':
         global rxTxUserInput
         global revision
         global protocol
+        global EnableUmode
+        global port
+        global rtuType
+
 
         input = variable4.get()
         protocol = str(input)
@@ -50,6 +60,12 @@ if __name__ == '__main__':
         rxTxUserInput = str(input6.upper())
         input7 = my_entry6.get()[:1]
         revision = str(input7)
+        input8 = variable5.get()
+        EnableUmode = str(input8)
+        input9 = variable6.get()
+        port = str(input9)
+        input10 = variable7.get()
+        rtuType = str(input10)
         root.destroy()
 
 
@@ -71,59 +87,79 @@ if __name__ == '__main__':
     my_label.grid(row=0, column=0)
     my_entry7 = Entry(root, validate="key")
     # validates that user input is only digits with testVal
-    my_entry7 = OptionMenu(root, variable4, "TRW S9000", "TRW 9550", "CDC 44-550")
+    my_entry7 = OptionMenu(root, variable4, "TRW S9000", "TRW 9550", "CDC")
     my_entry7.pack()
     my_entry7.grid(row=0, column=1)
 
+    my_label = Label(root, text="If CDC, which RTU Model?")
+    my_label.grid(row=0, column=2)
+    my_entry10 = Entry(root, validate="key")
+    my_entry10 = OptionMenu(root, variable7, "8890", "44-550")
+    my_entry10.pack()
+    my_entry10.grid(row=0, column=3)
+
     my_label = Label(root, text = "Station Name")
-    my_label.grid(row = 1, column = 0)
+    my_label.grid(row = 2, column = 0)
     # validates that user input is only letters with testVal2
     my_entry = Entry(root, validate="key")
     my_entry['validatecommand'] = (my_entry.register(testVal2),'%P','%d')
     my_entry.pack()
-    my_entry.grid(row = 1, column = 1)
+    my_entry.grid(row = 2, column = 1)
 
     my_label = Label(root, text = "EMS Baud Rate")
-    my_label.grid(row = 2, column = 0)
+    my_label.grid(row = 3, column = 0)
     my_entry1 = Entry(root, validate="key")
     # validates that user input is only digits with testVal
     my_entry1 = OptionMenu(root, variable3, "9600")
     my_entry1.pack()
-    my_entry1.grid(row = 2, column = 1)
+    my_entry1.grid(row = 3, column = 1)
 
     my_label = Label(root, text = "To EMS Local Address (0-65519)")
-    my_label.grid(row = 3, column = 0)
+    my_label.grid(row = 4, column = 0)
     my_entry2 = Entry(root, validate="key")
     my_entry2['validatecommand'] = (my_entry2.register(testVal),'%P','%d')
     my_entry2.pack()
-    my_entry2.grid(row = 3, column = 1)
+    my_entry2.grid(row = 4, column = 1)
 
     my_label = Label(root, text = "RTU Baud Rate")
-    my_label.grid(row = 4, column = 0)
+    my_label.grid(row = 5, column = 0)
     my_entry3 = OptionMenu(root, variable2, "1200", "2400")
     my_entry3.pack()
-    my_entry3.grid(row = 4, column = 1)
+    my_entry3.grid(row = 5, column = 1)
 
     my_label = Label(root, text = "To RTU Remote Address (Example: 3)")
-    my_label.grid(row = 5, column = 0)
+    my_label.grid(row = 6, column = 0)
     my_entry4 = Entry(root, validate="key")
     my_entry4['validatecommand'] = (my_entry4.register(testVal),'%P','%d')
     my_entry4.pack()
-    my_entry4.grid(row = 5, column = 1)
+    my_entry4.grid(row = 6, column = 1)
 
     #changes whether the switched rx / tx = 0 for no modem, False or 1 for modem, True
     my_label = Label(root, text = "Switched RX and Switched TX - Is there a modem? Answer: 'Yes' or 'No'")
-    my_label.grid(row = 6, column = 0)
+    my_label.grid(row = 7, column = 0)
     my_entry5 = OptionMenu(root, variable, "Yes", "No")
     my_entry5.pack()
-    my_entry5.grid(row = 6, column = 1)
+    my_entry5.grid(row = 7, column = 1)
 
     my_label = Label(root, text = "Config Revision?")
-    my_label.grid(row = 7, column = 0)
+    my_label.grid(row = 8, column = 0)
     my_entry6 = Entry(root, validate="key")
     my_entry6['validatecommand'] = (my_entry6.register(testVal2),'%P','%d')
     my_entry6.pack()
-    my_entry6.grid(row = 7, column = 1)
+    my_entry6.grid(row = 8, column = 1)
+
+    my_label = Label(root, text="Enable Unosolicted Mode? Default No:")
+    my_label.grid(row=9, column=0)
+    my_entry8 = OptionMenu(root, variable5, "Yes", "No")
+    my_entry8.pack()
+    my_entry8.grid(row=9, column=1)
+
+    my_label = Label(root, text="RTU Port?")
+    my_label.grid(row=10, column=0)
+    my_entry9 = Entry(root, validate="key")
+    my_entry9 = OptionMenu(root, variable6, "2", "3", "4")
+    my_entry9.pack()
+    my_entry9.grid(row=10, column=1)
 
     # Variables for data collected from the user to create the config
     stationName = ""
@@ -134,19 +170,24 @@ if __name__ == '__main__':
     revision = ""
     rxTxUserInput = ""
     protocol = ""
+    EnableUmode = ""
+    port = ""
+    rtuType = ""
+
 
     my_button = Button(root, text = "Submit", command = my_function)
-    my_button.grid(row = 8, column = 1)
+    my_button.grid(row = 11, column = 1)
     root.title("SPT Generator")
     root.resizable(0, 0)
     root.mainloop()
 
+
     if protocol == "TRW S9000":
-        s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, emsLocalAddress, rtuRemoteAddress)
+        s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, emsLocalAddress, rtuRemoteAddress, EnableUmode, port)
     if protocol == "TRW 9550":
-        trw9550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, emsLocalAddress, rtuRemoteAddress)
-    if protocol == "CDC 44-550":
-        print("")
+        trw9550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, emsLocalAddress, rtuRemoteAddress, EnableUmode, port)
+    if protocol == "CDC":
+        cdc44550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, emsLocalAddress, rtuRemoteAddress, EnableUmode, port, rtuType)
 
 
 
