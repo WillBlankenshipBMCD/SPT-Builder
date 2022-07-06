@@ -1,6 +1,8 @@
 from lxml import etree
 from Tkinter import *
+import pprint
 
+p = pprint.PrettyPrinter(indent=4)
 import xlrd
 file_loc = ("C:\Users\wblankenship\Documents\GitHub\SPT-Builder\SPT Config Generator.xlsx")
 wb = xlrd.open_workbook(file_loc)
@@ -78,6 +80,8 @@ def cdc44550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, 
     controlPoints = sorted(controlPoints, key=lambda i: (int(i['group']), int(i['index'])))
     numDelete = 0
 
+
+
     for i in range(controlPoints.__len__()):
         if controlPoints[i].get('description') == "":
             numDelete += 1
@@ -86,6 +90,8 @@ def cdc44550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, 
     if numDelete != 0:
         controlPoints = controlPoints[:-numDelete]
 
+    p.pprint(controlPoints)
+    raw_input()
 
     # filling in the Analog points
     for i in range(3, sheet.nrows):
@@ -102,11 +108,15 @@ def cdc44550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, 
     analogPoints = [i for i in analogPoints if i]
     analogPoints = sorted(analogPoints, key=lambda i: (['frame'], ['index']))
     numDelete = 0
+
     for i in range(analogPoints.__len__()):
         if analogPoints[i].get('description') == "":
             numDelete += 1
 
-    analogPoints = analogPoints[:-numDelete]
+    # if numDelete = 0, it will delete all the points in the list. It's just what [:0] does for some reason. This was a special case
+    if numDelete != 0:
+        analogPoints = analogPoints[:-numDelete]
+
 
     # root of the document
     root = etree.Element("SPT", Id="1")
@@ -200,12 +210,7 @@ def cdc44550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, 
             j+=1
             mcdNumsIndex+=1
             for i in range(8):
-                if mcdPoints[mcdPointsIndex].get('description') == "SPT_COMM_FAIL":
-                    P = etree.Element("P", Id=str(id), Ref=str(3000))
-                    P.text = ""
-                    P.tail = "\n"
-                    object1.insert(j, P)
-                elif mcdPoints[mcdPointsIndex].get('description') != "UNDEFINED":
+                if mcdPoints[mcdPointsIndex].get('description') != "UNDEFINED":
                     P = etree.Element("P", Id=str(id), Ref=str(j))
                     P.text = ""
                     P.tail = "\n"
@@ -228,13 +233,7 @@ def cdc44550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, 
             j+=1
             ssNumsIndex += 1
             for i in range(16):
-                if ssPoints[ssPointsIndex].get('description').upper() == "SPT_COMM_FAIL":
-                    P = etree.Element("P", Id=str(id), Ref=str(3000))
-                    P.text = ""
-                    P.tail = "\n"
-                    object1.insert(j, P)
-
-                elif ssPoints[ssPointsIndex].get('description').upper() != "UNDEFINED":
+                if ssPoints[ssPointsIndex].get('description').upper() != "UNDEFINED":
                     P = etree.Element("P", Id=str(id), Ref=str(j))
                     P.text = ""
                     P.tail = "\n"
@@ -251,8 +250,15 @@ def cdc44550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, 
                 ssPointsIndex += 1
                 j += 1
                 id += 1
+
+        # ssPointsIndex gets the last increment from the previous for loop
+        if ssPoints[ssPointsIndex].get('description').upper() == "SPT_COMM_FAIL":
+            P = etree.Element("P", Id=str(id), Ref=str(3000))
+            P.text = ""
+            P.tail = "\n"
+            object1.insert(j, P)
     else:
-        k = j + (10*(mcdPoints.__len__()/8)) -1
+        k = j + (10*(mcdPoints.__len__()/8)) - 1
         h = 0
 
         for i in range(ssPoints.__len__()/16):
@@ -261,13 +267,7 @@ def cdc44550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, 
             k+=1
             ssNumsIndex += 1
             for i in range(16):
-                if ssPoints[ssPointsIndex].get('description').upper() == "SPT_COMM_FAIL":
-                    P = etree.Element("P", Id=str(id), Ref=str(3000))
-                    P.text = ""
-                    P.tail = "\n"
-                    object1.insert(h, P)
-
-                elif ssPoints[ssPointsIndex].get('description').upper() != "UNDEFINED":
+                if ssPoints[ssPointsIndex].get('description').upper() != "UNDEFINED":
                     P = etree.Element("P", Id=str(id), Ref=str(k))
                     P.text = ""
                     P.tail = "\n"
@@ -293,12 +293,7 @@ def cdc44550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, 
             mcdNumsIndex += 1
 
             for i in range(8):
-                if mcdPoints[mcdPointsIndex].get('description') == "SPT_COMM_FAIL":
-                    P = etree.Element("P", Id=str(id), Ref=str(3000))
-                    P.text = ""
-                    P.tail = "\n"
-                    object1.insert(h, P)
-                elif mcdPoints[mcdPointsIndex].get('description') != "UNDEFINED":
+                if mcdPoints[mcdPointsIndex].get('description') != "UNDEFINED":
                     P = etree.Element("P", Id=str(id), Ref=str(j))
                     P.text = ""
                     P.tail = "\n"
@@ -316,6 +311,12 @@ def cdc44550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, 
                 h += 1
                 id += 1
 
+        if mcdPoints[mcdPointsIndex].get('description') == "SPT_COMM_FAIL":
+            P = etree.Element("P", Id=str(id), Ref=str(3000))
+            P.text = ""
+            P.tail = "\n"
+            object1.insert(h, P)
+
     # start of Object 2 - for Control Points ID = 12
     object2 = etree.Element("OBJECT", Id="12")
     object2.text = "\n"
@@ -324,10 +325,10 @@ def cdc44550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, 
 
     id = 0
     h = 0
-
+    # if mcd has 0 as first index do this
     if str(sheet.cell_value(3, 2)).replace(".0", "") == "0":
 
-        ctrlRefNums = j + analogPoints.__len__() + 3
+        ctrlRefNums = j + controlPoints.__len__() + 3
         for i in range(controlPoints.__len__() / 2):
             # i * 2 to account for there being 2 of each point
             if controlPoints[i * 2].get('description').upper() == "UNDEFINED":
@@ -379,9 +380,12 @@ def cdc44550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, 
 
             id += 1
 
+    # if SS has 0 as first index do this
     else:
 
-        ctrlRefNums = k + analogPoints.__len__() + 3
+        ctrlRefNums = k + controlPoints.__len__() + 3
+        print(controlPoints.__len__())
+        raw_input()
         for i in range(controlPoints.__len__() / 2):
             # i * 2 to account for there being 2 of each point
             if controlPoints[i * 2].get('description').upper() == "UNDEFINED":
@@ -883,5 +887,5 @@ def cdc44550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, 
     tree.write(str(stationName) + " ASE SPT CDC " + str(rtuType) + " DNP Rev " + str(revision) + ".xml")
     # add for addtional info - - - > ,xml_declaration=True,   encoding="utf-8")
 
-# arguments are rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, emsLocalAddress, rtuRemoteAddress
-#s9000Gen("NO", "Millhurst", "A", "9600", "1200", "10234", "3")
+# arguments are rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, emsLocalAddress, rtuRemoteAddress, enableUmode, port#, rtuType.
+cdc44550Gen("YES", "Colts Neck", "A", "9600", "1200", "20289", "2", "NO", "3", "8890")

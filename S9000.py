@@ -125,7 +125,10 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
         if analogPoints[i].get('description') == "":
             numDelete += 1
 
-    analogPoints = analogPoints[:-numDelete]
+    # if numDelete = 0, it will delete all the points in the list. It's just what [:0] does for some reason. This was a special case
+    if numDelete != 0:
+        controlPoints = controlPoints[:-numDelete]
+
     # for determining how many status frames there are for xcount
     if (analogPoints.__len__() == 0):
         numAnalogFrames = 0
@@ -737,5 +740,5 @@ def s9000Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, ems
     # add for addtional info - - - > ,xml_declaration=True,   encoding="utf-8")
 
 # The program is acutally running twice with this.
-# arguments are rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, emsLocalAddress, rtuRemoteAddress
+# # arguments are rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, emsLocalAddress, rtuRemoteAddress, enableUmode, port#, rtuType.
 # s9000Gen("NO", "Millhurst", "A", "9600", "1200", "10234", "3", "No", "2")

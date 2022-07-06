@@ -1,6 +1,7 @@
 from lxml import etree
 from Tkinter import *
-
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
 import xlrd
 file_loc = ("C:\Users\wblankenship\Documents\GitHub\SPT-Builder\SPT Config Generator.xlsx")
 wb = xlrd.open_workbook(file_loc)
@@ -66,8 +67,7 @@ def trw9550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, e
                  "description": str(sheet.cell_value(i, 11)).strip().replace(" ", "_")
                      .replace("\\", "_").replace("/", "_").replace("-", "_")
                      .replace("&", "").replace("<", "").replace(">", "")
-                     .replace('"', "").replace('._', "_").replace('_.', "_").replace('__', "_").replace('___',
-                                                                                                        "_").upper(),
+                     .replace('"', "").replace('._', "_").replace('_.', "_").replace('__', "_").replace('___',"_").upper(),
                  "function": sheet.cell_value(i, 12)}
         if (point.get('group') == "" or point.get('index') == ""):
             break
@@ -106,7 +106,9 @@ def trw9550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, e
         if analogPoints[i].get('description') == "":
             numDelete += 1
 
-    analogPoints = analogPoints[:-numDelete]
+    # if numDelete = 0, it will delete all the points in the list. It's just what [:0] does for some reason. This was a special case
+    if numDelete != 0:
+        analogPoints = analogPoints[:-numDelete]
 
     # root of the document
     root = etree.Element("SPT", Id="1")
@@ -604,7 +606,6 @@ def trw9550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, e
     if e != 0:
         controlNumGroups += 1
 
-
     a = 3
     h = 0
     j = 0
@@ -740,5 +741,5 @@ def trw9550Gen(rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, e
     tree.write(str(stationName) + " ASE SPT Alert 9550 DNP Rev " + str(revision) + ".xml")
     # add for addtional info - - - > ,xml_declaration=True,   encoding="utf-8")
 
-# arguments are rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, emsLocalAddress, rtuRemoteAddress
-# trw9550Gen("NO", "Millhurst", "A", "9600", "1200", "10234", "3", "No", "2")
+# arguments are rxTxUserInput, stationName, revision, emsBaudRate, rtuBaudRate, emsLocalAddress, rtuRemoteAddress, enableUmode, port#.
+trw9550Gen("YES", "Moore", "A", "9600", "2400", "10191", "3", "No", "2")

@@ -98,7 +98,7 @@
 <SwitchedRX>0</SwitchedRX>
 <SwitchedTX>0</SwitchedTX>
 <PostTransmissionDelay>1</PostTransmissionDelay>
-<DEVICE Id="2" Key="77" Name="MOORE_OUTPOST_RTU">
+<DEVICE Id="3" Key="77" Name="MOORE_OUTPOST_RTU">
 <REQUEST Id="0" Key="78">
 <Function>5</Function>
 <Variation>1</Variation>

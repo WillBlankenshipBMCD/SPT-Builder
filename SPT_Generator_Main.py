@@ -110,7 +110,7 @@ if __name__ == '__main__':
     my_label.grid(row = 3, column = 0)
     my_entry1 = Entry(root, validate="key")
     # validates that user input is only digits with testVal
-    my_entry1 = OptionMenu(root, variable3, "9600")
+    my_entry1 = OptionMenu(root, variable3, "9600", "38400")
     my_entry1.pack()
     my_entry1.grid(row = 3, column = 1)
 
